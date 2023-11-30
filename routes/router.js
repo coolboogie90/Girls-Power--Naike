@@ -20,11 +20,11 @@ router.get("/logout", controller.logoutGet);
 router.get("/profile", controller.profileGet);
 
 // Create a job
-router.get("/create-offer", controller.createOfferGet);
-router.post("/create-offer", controller.createOfferPost);
+router.get("/create", controller.createOfferGet);
+router.post("/create", controller.createOfferPost);
 
 // Edit a job
-router.get("/edit-offer", controller.editOfferGet);
-router.put("/edit-offer", controller.editOfferPut);
+router.get("/update", controller.editOfferGet);
+router.put("/update", controller.editOfferPut);
 
 module.exports = router;
