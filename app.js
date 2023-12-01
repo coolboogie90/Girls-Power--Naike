@@ -21,7 +21,8 @@ app.use(express.static(__dirname + "public"));
 app.use(router);
 
 // database connection
-const dbURI = process.env.DB_URI;
+
+const dbURI = process.env.MONGODB_URI || process.env.DB_URI;
 
 mongoose
     .connect(dbURI)
