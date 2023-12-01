@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 
 /* Middleware */
-app.use(express.static("public"));
+
 app.use(express.json());
 
 /* View engine */
