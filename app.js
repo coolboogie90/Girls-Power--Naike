@@ -12,8 +12,10 @@ app.use(express.static("public"));
 app.use(express.json());
 
 /* View engine */
+//app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
-
+app.use(express.static(__dirname + "public"));
 /* Routes */
 // app.get("*", checkUser);
 app.use(router);
