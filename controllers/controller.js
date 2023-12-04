@@ -109,6 +109,7 @@ module.exports.createOfferPost = async (req, res) => {
 			offerOrigin,
 			offerStatus,
 			comments,
+			author: req.user._id,
 		});
 		res.status(201).json({ offer: offer._id });
 		res.redirect("/");
