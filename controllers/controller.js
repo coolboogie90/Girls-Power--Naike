@@ -62,7 +62,8 @@ module.exports.registerPost = async (req, res) => {
 
 // Logout page
 module.exports.logoutGet = (req, res) => {
-	res.render("login");
+	res.cookie("jwt", "", { maxAge: 1 });
+	res.redirect("/login");
 };
 
 // Profile page
@@ -91,5 +92,3 @@ module.exports.editOfferPut = (req, res) => {
 };
 
 // Delete a job
-
-// Logout page
