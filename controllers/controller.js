@@ -40,8 +40,24 @@ module.exports.registerGet = (req, res) => {
 };
 
 module.exports.registerPost = async (req, res) => {
-	console.log("Register envoyé");
-	res.send("Register envoyé");
+	const { firstname, lastname, email, github, picture, cv, password } =
+		req.body;
+	try {
+		const user = await User.create({
+			firstname,
+			lastname,
+			email,
+			github,
+			picture,
+			cv,
+			password,
+		});
+		const token = createToken(user._id);
+		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+		res.status(201).json({ user: user._id });
+	} catch (err) {
+		console.log(err);
+	}
 };
 
 // Logout page
