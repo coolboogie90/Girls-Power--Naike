@@ -57,6 +57,10 @@ const offerSchema = new mongoose.Schema({
 		type: String,
 		trim: true,
 	},
+	author: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User",
+	},
 
 	// user_id
 });
