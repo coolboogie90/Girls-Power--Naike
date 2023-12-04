@@ -8,7 +8,7 @@ router.get("/", requireAuth, controller.dashboardGet);
 
 // Login
 router.get("/login", controller.loginGet);
-router.post("login", controller.loginPost);
+router.post("/login", controller.loginPost);
 
 // Register
 router.get("/register", controller.registerGet);

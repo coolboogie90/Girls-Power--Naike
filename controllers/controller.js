@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { ObjectId } = require("mongodb");
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
@@ -25,7 +26,7 @@ const handleErrors = (err) => {
 };
 
 // create JWT
-const maxAge = process.env.MAX_AGE;
+const maxAge = process.env.MAX_AGE || 3 * 24 * 60 * 60;
 const createToken = (id) => {
 	return jwt.sign({ id }, process.env.JWT_SECRET, {
 		expiresIn: maxAge,
@@ -99,6 +100,8 @@ module.exports.createOfferGet = (req, res) => {
 };
 
 module.exports.createOfferPost = async (req, res) => {
+	// res.send("Offre créée");
+	// const user = User.findOne({ _id: new ObjectId(req.user._id) });
 	const { jobTitle, url, employer, offerOrigin, offerStatus, comments } =
 		req.body;
 	try {
@@ -109,7 +112,7 @@ module.exports.createOfferPost = async (req, res) => {
 			offerOrigin,
 			offerStatus,
 			comments,
-			author: req.user._id,
+			// author: user._id,
 		});
 		res.status(201).json({ offer: offer._id });
 		res.redirect("/");

@@ -7,13 +7,11 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: [true, "please enter your firstname"],
 		minLenght: [3, "enter minimum name lenght 3 characters"],
-		trim: true,
 	},
 	lastname: {
 		type: String,
 		required: [true, "please enter your lastname"],
 		minLenght: [3, "enter minimum name lenght 3 characters"],
-		trim: true,
 	},
 	email: {
 		type: String,
@@ -21,26 +19,20 @@ const userSchema = new mongoose.Schema({
 		unique: true,
 		lowercase: true,
 		validate: [isEmail, "Please enter a valid email"],
-		trim: true,
 	},
 	github: {
 		type: String,
-		trim: true,
 	},
-
 	picture: {
 		type: String,
-		trim: true,
 	},
 	cv: {
 		typpe: String,
-		trim: true,
 	},
 	password: {
 		type: String,
 		required: [true, "please enter an password"],
 		minLenght: [6, "Minimun password lenght is 6 characters"],
-		trim: true,
 	},
 });
 

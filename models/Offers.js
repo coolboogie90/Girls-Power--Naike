@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
+const { isEmail } = require("validator");
 
 const employerSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
-		trim: true,
 	},
 	email: {
 		type: String,
@@ -12,15 +12,12 @@ const employerSchema = new mongoose.Schema({
 		unique: true,
 		lowercase: true,
 		validate: [isEmail, "Please enter a valid email"],
-		trim: true,
 	},
 	phone: {
 		type: String,
-		trim: true,
 	},
 	adress: {
 		type: String,
-		trim: true,
 	},
 });
 const offerSchema = new mongoose.Schema({
@@ -35,16 +32,13 @@ const offerSchema = new mongoose.Schema({
 	},
 	jobTitle: {
 		type: String,
-		trim: true,
 		required: true,
 	},
 	url: {
 		type: String,
-		trim: true,
 		required: true,
 	},
 	employer: employerSchema,
-
 	offerOrigin: {
 		type: String,
 		required: true,
@@ -55,14 +49,11 @@ const offerSchema = new mongoose.Schema({
 	},
 	comments: {
 		type: String,
-		trim: true,
 	},
 	author: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User",
 	},
-
-	// user_id
 });
 
 const Offer = mongoose.model("offer", offerSchema);
