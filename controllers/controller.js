@@ -1,5 +1,6 @@
 require("dotenv").config();
 const User = require("../models/Users");
+const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
 
 // Handle errors
@@ -97,9 +98,24 @@ module.exports.createOfferGet = (req, res) => {
 	res.render("create");
 };
 
-module.exports.createOfferPost = (req, res) => {
-	console.log("Nouvelle offre envoyée");
-	res.send("Nouvelle offre envoyée");
+module.exports.createOfferPost = async (req, res) => {
+	const { jobTitle, url, employer, offerOrigin, offerStatus, comments } =
+		req.body;
+	try {
+		const offer = await Offer.create({
+			jobTitle,
+			url,
+			employer,
+			offerOrigin,
+			offerStatus,
+			comments,
+		});
+		res.status(201).json({ offer: offer._id });
+		res.redirect("/");
+	} catch (err) {
+		const errors = handleErrors(err);
+		res.status(400).json({ errors });
+	}
 };
 
 // Edit a job page
