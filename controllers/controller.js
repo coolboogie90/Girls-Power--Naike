@@ -4,6 +4,8 @@ const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
 
+let currentUserId;
+
 // Handle errors
 const handleErrors = (err) => {
 	console.log(err.message, err.code);
@@ -49,6 +51,7 @@ module.exports.loginPost = async (req, res) => {
 		const user = await User.login(email, password);
 		const token = createToken(user._id);
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+		currentUserId = JSON.stringify(user._id);
 		res.status(200).json({ user: user._id });
 	} catch (err) {
 		const errors = handleErrors(err);
@@ -112,7 +115,7 @@ module.exports.createOfferPost = async (req, res) => {
 			offerOrigin,
 			offerStatus,
 			comments,
-			// author: user._id,
+			author: currentUserId,
 		});
 		res.status(201).json({ offer: offer._id });
 		res.redirect("/");

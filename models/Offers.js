@@ -9,7 +9,6 @@ const employerSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		required: [true, "please enter an email"],
-		unique: true,
 		lowercase: true,
 		validate: [isEmail, "Please enter a valid email"],
 	},
@@ -51,8 +50,7 @@ const offerSchema = new mongoose.Schema({
 		type: String,
 	},
 	author: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "User",
+		type: String,
 	},
 });
 
