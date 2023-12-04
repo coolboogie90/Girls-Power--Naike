@@ -1,11 +1,12 @@
 require("dotenv").config();
 
 const express = require("express");
-const router = require("./routes/router");
-const app = express();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const { checkUser } = require("./middleware/authMiddleware");
 
+const router = require("./routes/router");
+const app = express();
 const PORT = process.env.PORT || 3001;
 
 /* Middleware */
@@ -17,11 +18,11 @@ app.use(cookieParser());
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + "public"));
+app.use(express.static(__dirname + "/public"));
 
 /* Routes */
 
-// app.get("*", checkUser);
+app.get("*", checkUser);
 app.use(router);
 
 /* Database connection */
@@ -36,5 +37,7 @@ mongoose
 		})
 	)
 	.catch((err) => console.log(err));
+
+/* For Vercel */
 
 module.exports = app;

@@ -3,6 +3,25 @@ const User = require("../models/Users");
 const jwt = require("jsonwebtoken");
 
 // Handle errors
+const handleErrors = (err) => {
+	console.log(err.message, err.code);
+	let errors = { email: "", password: "" };
+	if (err.message === "Incorrect email") {
+		errors.email = "That email is not registered";
+	}
+	if (err.message === "Incorrect password") {
+		errors.password = "That password is incorrect";
+	}
+	if (err.code === 11000) {
+		errors.email = "That email is already registered";
+		return errors;
+	}
+	if (err.message.includes("user validation failed")) {
+		Object.values(err.errors).forEach(({ properties }) => {
+			errors[properties.path] = properties.message;
+		});
+	}
+};
 
 // create JWT
 const maxAge = process.env.MAX_AGE;
@@ -30,7 +49,8 @@ module.exports.loginPost = async (req, res) => {
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 		res.status(200).json({ user: user._id });
 	} catch (err) {
-		console.log(err);
+		const errors = handleErrors(err);
+		res.status(400).json({ errors });
 	}
 };
 
@@ -56,7 +76,8 @@ module.exports.registerPost = async (req, res) => {
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 		res.status(201).json({ user: user._id });
 	} catch (err) {
-		console.log(err);
+		const errors = handleErrors(err);
+		res.status(400).json({ errors });
 	}
 };
 

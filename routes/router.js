@@ -1,9 +1,10 @@
 const { Router } = require("express");
-const router = Router();
+const { requireAuth } = require("../middleware/authMiddleware");
 const controller = require("../controllers/controller");
+const router = Router();
 
 // Dashboard
-router.get("/", controller.dashboardGet);
+router.get("/", requireAuth, controller.dashboardGet);
 
 // Login
 router.get("/login", controller.loginGet);
@@ -17,14 +18,14 @@ router.post("/register", controller.registerPost);
 router.get("/logout", controller.logoutGet);
 
 // Profile
-router.get("/profile", controller.profileGet);
+router.get("/profile", requireAuth, controller.profileGet);
 
 // Create a job
-router.get("/create", controller.createOfferGet);
-router.post("/create", controller.createOfferPost);
+router.get("/create", requireAuth, controller.createOfferGet);
+router.post("/create", requireAuth, controller.createOfferPost);
 
 // Edit a job
-router.get("/update", controller.editOfferGet);
-router.put("/update", controller.editOfferPut);
+router.get("/update", requireAuth, controller.editOfferGet);
+router.put("/update", requireAuth, controller.editOfferPut);
 
 module.exports = router;
