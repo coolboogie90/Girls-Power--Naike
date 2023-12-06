@@ -3,13 +3,10 @@
 
     <h1>DASHBOARD</h1>
 
-    <% if (user) { %>
-        <li>Welcome <%= user.firstName %> <%= user.lastName %>
-        </li>
-        <li><a href="/logout">Log out</a></li>
-        <% }
-        else { %>
-            
+    
+    <h2>WELCOME <%= user.firstName %> <%= user.lastName %></h2>
+
+    <a href="/logout">Log out</a></p>
 
 
     <%- include('partials/footer'); -%>
