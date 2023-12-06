@@ -73,15 +73,15 @@
 				});
 				const data = await res.json();
 				console.log(data);
-				if (data.errors) {
-					if (!firstName || !lastName || !email || !password || !confirmPassword){
-						firstNameError.textContent = data.errors.firstName;
-						lastNameError.textContent = data.errors.lastName;
-						emailError.textContent = data.errors.email;
-						passwordError.textContent = data.errors.password;
-						confirmPasswordError.textContent = data.errors.confirmPassword;
-					}
-				}
+				// if (data.errors) {
+				// 	if (!firstName || !lastName || !email || !password || !confirmPassword){
+				// 		firstNameError.textContent = data.errors.firstName;
+				// 		lastNameError.textContent = data.errors.lastName;
+				// 		emailError.textContent = data.errors.email;
+				// 		passwordError.textContent = data.errors.password;
+				// 		confirmPasswordError.textContent = data.errors.confirmPassword;
+				// 	}
+				// }
 				if (data.user) {
 					location.assign("/");
 				}
