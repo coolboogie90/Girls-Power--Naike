@@ -127,7 +127,7 @@ module.exports.createOfferPost = async (req, res) => {
 			comments,
 			author: currentUserId,
 		});
-		res.status(201).json({ offer: offer._id });
+		res.status(201).redirect("/");
 		console.log("Hello status");
 		// res.redirect("/");
 		// console.log("Hello redirect");
@@ -172,7 +172,7 @@ module.exports.editOfferPut = async (req, res) => {
 			},
 		}
 	);
-	res.status(201).json({ offer: offerToUpdate._id });
+	res.status(201).redirect("/");
 };
 
 // Delete a job
