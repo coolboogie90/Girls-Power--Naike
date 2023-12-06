@@ -64,16 +64,16 @@ module.exports.registerGet = (req, res) => {
 };
 
 module.exports.registerPost = async (req, res) => {
-	const { firstname, lastname, email, github, picture, cv, password } =
+	const { firstName, lastName, email, github, profilePicture, resume, password } =
 		req.body;
 	try {
 		const user = await User.create({
-			firstname,
-			lastname,
+			firstName,
+			lastName,
 			email,
 			github,
-			picture,
-			cv,
+			profilePicture,
+			resume,
 			password,
 		});
 		const token = createToken(user._id);
