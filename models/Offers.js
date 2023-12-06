@@ -1,24 +1,6 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 
-const employerSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: true,
-	},
-	email: {
-		type: String,
-		required: [true, "please enter an email"],
-		lowercase: true,
-		validate: [isEmail, "Please enter a valid email"],
-	},
-	phone: {
-		type: String,
-	},
-	adress: {
-		type: String,
-	},
-});
 const offerSchema = new mongoose.Schema({
 	createdAt: {
 		type: Date,
@@ -37,7 +19,22 @@ const offerSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	employer: employerSchema,
+	employerName: {
+		type: String,
+		required: true,
+	},
+	employerEmail: {
+		type: String,
+		required: [true, "please enter an email"],
+		lowercase: true,
+		validate: [isEmail, "Please enter a valid email"],
+	},
+	employerPhone: {
+		type: String,
+	},
+	employerAddress: {
+		type: String,
+	},
 	offerOrigin: {
 		type: String,
 		required: true,

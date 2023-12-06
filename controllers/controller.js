@@ -1,5 +1,4 @@
 require("dotenv").config();
-const { ObjectId } = require("mongodb");
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
@@ -50,8 +49,8 @@ module.exports.loginPost = async (req, res) => {
 	try {
 		const user = await User.login(email, password);
 		const token = createToken(user._id);
-		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 		currentUserId = user._id;
+		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 		res.status(200).json({ user: user._id });
 	} catch (err) {
 		const errors = handleErrors(err);
@@ -78,6 +77,7 @@ module.exports.registerPost = async (req, res) => {
 			password,
 		});
 		const token = createToken(user._id);
+		currentUserId = user._id;
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 		res.status(201).json({ user: user._id });
 	} catch (err) {
@@ -103,23 +103,30 @@ module.exports.createOfferGet = (req, res) => {
 };
 
 module.exports.createOfferPost = async (req, res) => {
-	console.log(`Hello ${currentUserId}`);
-	// const user = User.findOne({ _id: new ObjectId(currentUserId).toString() });
-	const { jobTitle, url, employer, offerOrigin, offerStatus, comments } =
-		req.body;
+	const {
+		jobTitle,
+		url,
+		employerName,
+		employerEmail,
+		offerOrigin,
+		offerStatus,
+		comments,
+	} = req.body;
 	try {
 		const offer = await Offer.create({
 			jobTitle,
 			url,
-			employer,
+			employerName,
+			employerEmail,
 			offerOrigin,
 			offerStatus,
 			comments,
 			author: currentUserId,
 		});
-		console.log("Hello");
 		res.status(201).json({ offer: offer._id });
-		res.redirect("/");
+		console.log("Hello status");
+		// res.redirect("/");
+		// console.log("Hello redirect");
 	} catch (err) {
 		const errors = handleErrors(err);
 		res.status(400).json({ errors });
