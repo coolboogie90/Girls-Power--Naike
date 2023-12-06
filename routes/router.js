@@ -25,7 +25,7 @@ router.get("/create", requireAuth, controller.createOfferGet);
 router.post("/create", requireAuth, controller.createOfferPost);
 
 // Edit a job
-router.get("/update", requireAuth, controller.editOfferGet);
-router.put("/update", requireAuth, controller.editOfferPut);
+router.get("/update/:id", requireAuth, controller.editOfferGet);
+router.put("/update/:id", requireAuth, controller.editOfferPut);
 
 module.exports = router;

@@ -108,6 +108,8 @@ module.exports.createOfferPost = async (req, res) => {
 		url,
 		employerName,
 		employerEmail,
+		employerPhone,
+		employerAddress,
 		offerOrigin,
 		offerStatus,
 		comments,
@@ -118,6 +120,8 @@ module.exports.createOfferPost = async (req, res) => {
 			url,
 			employerName,
 			employerEmail,
+			employerPhone,
+			employerAddress,
 			offerOrigin,
 			offerStatus,
 			comments,
@@ -138,9 +142,37 @@ module.exports.editOfferGet = (req, res) => {
 	res.render("update");
 };
 
-module.exports.editOfferPut = (req, res) => {
-	console.log("Offre modifiée");
-	res.send("Offre modifiée");
+module.exports.editOfferPut = async (req, res) => {
+	const id = req.params.id;
+	const {
+		jobTitle,
+		url,
+		employerName,
+		employerEmail,
+		employerPhone,
+		employerAddress,
+		offerOrigin,
+		offerStatus,
+		comments,
+	} = req.body;
+	const offerToUpdate = await Offer.updateOne(
+		{ _id: id },
+		{
+			$set: {
+				jobTitle,
+				url,
+				employerName,
+				employerEmail,
+				employerPhone,
+				employerAddress,
+				offerOrigin,
+				offerStatus,
+				comments,
+				updatedAt: Date.now(),
+			},
+		}
+	);
+	res.status(201).json({ offer: offerToUpdate._id });
 };
 
 // Delete a job
