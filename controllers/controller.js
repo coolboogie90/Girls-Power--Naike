@@ -103,7 +103,6 @@ module.exports.createOfferGet = (req, res) => {
 };
 
 module.exports.createOfferPost = async (req, res) => {
-	// res.send("Offre créée");
 	// const user = User.findOne({ _id: new ObjectId(req.user._id) });
 	const { jobTitle, url, employer, offerOrigin, offerStatus, comments } =
 		req.body;
@@ -115,7 +114,7 @@ module.exports.createOfferPost = async (req, res) => {
 			offerOrigin,
 			offerStatus,
 			comments,
-			author: currentUserId,
+			author: new ObjectId(currentUserId).toString(),
 		});
 		res.status(201).json({ offer: offer._id });
 		res.redirect("/");
