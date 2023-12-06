@@ -51,7 +51,7 @@ module.exports.loginPost = async (req, res) => {
 		const user = await User.login(email, password);
 		const token = createToken(user._id);
 		res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-		currentUserId = JSON.stringify(user._id);
+		currentUserId = user._id;
 		res.status(200).json({ user: user._id });
 	} catch (err) {
 		const errors = handleErrors(err);
@@ -103,7 +103,8 @@ module.exports.createOfferGet = (req, res) => {
 };
 
 module.exports.createOfferPost = async (req, res) => {
-	// const user = User.findOne({ _id: new ObjectId(req.user._id) });
+	console.log(`Hello ${currentUserId}`);
+	// const user = User.findOne({ _id: new ObjectId(currentUserId).toString() });
 	const { jobTitle, url, employer, offerOrigin, offerStatus, comments } =
 		req.body;
 	try {
@@ -114,8 +115,9 @@ module.exports.createOfferPost = async (req, res) => {
 			offerOrigin,
 			offerStatus,
 			comments,
-			author: new ObjectId(currentUserId).toString(),
+			author: currentUserId,
 		});
+		console.log("Hello");
 		res.status(201).json({ offer: offer._id });
 		res.redirect("/");
 	} catch (err) {

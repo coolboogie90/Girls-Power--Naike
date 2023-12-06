@@ -50,7 +50,7 @@ const offerSchema = new mongoose.Schema({
 		type: String,
 	},
 	author: {
-		type: String,
+		type: Object,
 	},
 });
 
