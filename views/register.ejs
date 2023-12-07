@@ -1,38 +1,49 @@
 <%- include('partials/header'); -%>
 
+<h2>Register</h2>
 <form action="/register" method="POST">
-	<h2>Register</h2>
     
 	<label for="firstName">First Name</label>
 	<input type="text" name="firstName" required />
     <div class="firstName error"></div>
+
 	<label for="lastName">Last Name</label>
 	<input type="text" name="lastName" required />
     <div class="lastName error"></div>
+
 	<label for="email">Email</label>
 	<input type="text" name="email" required />
 	<div class="email error"></div>
+
 	<label for="github">GitHub</label>
 	<input type="text" name="github"  />
+
 	<label for="profilePicture">Profile Picture</label>
 	<!-- <form action="" method="POST">
         <button>Upload</button>
     </form> -->
+
 	<label for="resume">Resume (.pdf)</label>
 	<!-- <form action="" method="POST">
         <button>Upload</button>
     </form> -->
+
 	<label for="password">Password</label>
 	<input type="password" name="password" required />
 	<div class="password error"></div>
+
 	<label for="confirmPassword">Confirm Password</label>
 	<input type="password" name="confirmPassword" required />
 	<div class="confirmPassword error"></div>
+
 	<button>Register</button>
+
     <p>Already registered? <a href="/login">Login</a></p>
 </form>
 
+
 <%- include('partials/footer'); -%>
+
 
 <script>
 	const form = document.querySelector("form");
@@ -89,8 +100,6 @@
 			} catch (err) {
 				console.log(err);
 			}
-	}
-
-		
+		}	
 	});
 </script>

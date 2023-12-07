@@ -1,5 +1,18 @@
 <%- include('partials/header'); -%>
 
-    <h1>PROFILE GET</h1>
+    <h1>My profile</h1>
+    <hr>
+    <p>Full name: <%= user.firstName %> <%= user.lastName %></p>
+    <p>Email: <%= user.email %></p>
+    <p>GitHub: <%= user.github %></p>
+    <p>Profile picture: <%= user.profilePicture %></p>
+    <button><a href="">Download Resume: <%= user.resume %></a></button>
+    <button><a href="">Upload New Resume</a></button>
+    <button><a href="">Change password</a></button>
+    <hr>
+    <a href="/">Back to the dashboard</a></p>
+
+
+
 
     <%- include('partials/footer'); -%>
