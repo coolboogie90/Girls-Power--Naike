@@ -135,9 +135,7 @@ module.exports.createOfferPost = async (req, res) => {
 			author: currentUserId,
 		});
 		res.status(201).redirect("/");
-		console.log("Hello status");
-		// res.redirect("/");
-		// console.log("Hello redirect");
+		console.log("Offer created");
 	} catch (err) {
 		const errors = handleErrors(err);
 		res.status(400).json({ errors });
