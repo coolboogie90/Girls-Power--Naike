@@ -1,6 +1,10 @@
 const { Router } = require("express");
 const { requireAuth } = require("../middleware/authMiddleware");
 const controller = require("../controllers/controller");
+require("../middleware/cloudinary.config");
+const uploadPicture = require("../middleware/pictureStorage");
+const uploadResume = require("../middleware/resumeStorage");
+
 const router = Router();
 
 // Dashboard
@@ -12,7 +16,11 @@ router.post("/login", controller.loginPost);
 
 // Register
 router.get("/register", controller.registerGet);
-router.post("/register", controller.registerPost);
+router.post(
+	"/register",
+	uploadPicture.single("image"),
+	controller.registerPost
+);
 
 // Logout
 router.get("/logout", controller.logoutGet);

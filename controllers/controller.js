@@ -2,16 +2,8 @@ require("dotenv").config();
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
-const cloudinary = require("cloudinary").v2;
 
 let currentUserId;
-
-// Cloudinary config
-cloudinary.config({
-	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 // Handle errors
 const handleErrors = (err) => {
@@ -87,7 +79,7 @@ module.exports.registerPost = async (req, res) => {
 			lastName,
 			email,
 			github,
-			profilePicture,
+			profilePicture: req.file.url,
 			resume,
 			password,
 		});
