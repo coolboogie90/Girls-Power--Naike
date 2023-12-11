@@ -79,7 +79,7 @@ module.exports.registerPost = async (req, res) => {
 			lastName,
 			email,
 			github,
-			profilePicture: req.file.url,
+			profilePicture,
 			resume,
 			password,
 		});
@@ -180,6 +180,12 @@ module.exports.editOfferPut = async (req, res) => {
 		}
 	);
 	res.status(201).redirect("/");
+};
+
+// Get all jobs for a user
+module.exports.allOffersGet = async (req, res) => {
+	const offers = await Offer.find({ author: currentUserId });
+	res.status(200).json({ offers });
 };
 
 // Delete a job
