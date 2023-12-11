@@ -6,12 +6,12 @@ const userSchema = new mongoose.Schema({
 	firstName: {
 		type: String,
 		required: [true, "please enter your firstname"],
-		minLength: [3, "enter minimum name Length 3 characters"],
+		minlength: [3, "enter minimum name Length 3 characters"],
 	},
 	lastName: {
 		type: String,
 		required: [true, "please enter your lastname"],
-		minLength: [3, "enter minimum name Length 3 characters"],
+		minlength: [3, "enter minimum name Length 3 characters"],
 	},
 	email: {
 		type: String,
@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
 		type: String,
 	},
 	resume: {
-		typpe: String,
+		type: String,
 	},
 	password: {
 		type: String,
 		required: [true, "please enter an password"],
-		minLength: [6, "Minimun password Length is 6 characters"],
+		minlength: [6, "Minimun password Length is 6 characters"],
 	},
 });
 
