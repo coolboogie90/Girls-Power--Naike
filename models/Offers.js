@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
-const Offer = require('./models/Offer');
 
 const offerSchema = new mongoose.Schema({
 	createdAt: {
@@ -14,15 +13,15 @@ const offerSchema = new mongoose.Schema({
 	},
 	jobTitle: {
 		type: String,
-		required: true,
+		required: [true, "please enter a job title"],
 	},
 	url: {
 		type: String,
-		required: true,
+		required: [true, "please enter an url"],
 	},
 	employerName: {
-		type: String,
-		required: true,
+		type: String,	
+		required: [true, "please enter an employer name"],
 	},
 	employerEmail: {
 		type: String,
@@ -52,20 +51,6 @@ const offerSchema = new mongoose.Schema({
 	},
 });
 
+const Offer = mongoose.model("offer", offerSchema);
 
-
-const Offer = require('./models/Offer'); 
-
-try {
- const updatedOffer = await Offer.updateOne({ _id: offerId }, updateData, { runValidators: true });
- console.log('Offer create:', updatedOffer);
-} catch (error) {
- if (error.name === 'ValidationError') {
-   console.error('Validation error:', error.message);
-   for (let field in error.errors) {
-     console.error(`Field: ${field}, Error: ${error.errors[field].message}`);
-   }
- } else {
-   console.error('An unexpected error occurred:', error);
- }
-}
+module.exports = Offer;
