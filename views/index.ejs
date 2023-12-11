@@ -8,10 +8,24 @@
     <a href="/profile">My profile</a></p>
     <hr>
     <div>
-        <h3>My Offers</h3>
         <a href="/create">Create a new offer</a></p>
         <br>
-        <p>No offer found.</p>
+        <% if (offers.length) { %>
+            <div>
+                <h3>My Offers</h3>
+                <% offers.forEach((offer) => { %>
+                <div>
+                    <p><%= offer.offerStatus %></p>
+                    <h4><%= offer.jobTitle %></h4>
+                    <p><%= offer.employerName %></p>
+                    <a href="/offers/<%= offer._id %>">See More</a>
+                </div>
+              <% }); %>
+            </div>
+            <hr>         
+          <% } else { %>
+            <p>No offer found.</p>
+          <% } %>
     </div>
     <hr>
 

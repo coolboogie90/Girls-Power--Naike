@@ -35,8 +35,8 @@ const createToken = (id) => {
 };
 
 // Dashboard page
-module.exports.dashboardGet = (req, res) => {
-	res.render("index");
+module.exports.dashboardGet = async (req, res) => {
+    res.render("index");
 };
 
 // Login page
@@ -144,7 +144,9 @@ module.exports.createOfferPost = async (req, res) => {
 
 // Edit a job page
 module.exports.editOfferGet = (req, res) => {
-	res.render("update");
+	const id = req.params.id;
+	const offer = Offer.findById(id);
+	res.render("update", { offer });
 };
 
 module.exports.editOfferPut = async (req, res) => {
@@ -180,10 +182,12 @@ module.exports.editOfferPut = async (req, res) => {
 	res.status(201).redirect("/");
 };
 
-// Get all jobs for a user
-module.exports.allOffersGet = async (req, res) => {
-	const offers = await Offer.find({ author: currentUserId });
-	res.status(200).json({ offers });
+
+// Get offer data
+module.exports.offerGet = async (req, res) => {
+	const id = req.params.id;
+	const offer = await Offer.findById(id);
+	res.render("offer", { offer });
 };
 
 // Delete a job

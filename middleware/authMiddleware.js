@@ -1,6 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const User = require("../models/Users");
+const Offer = require("../models/Offers")
 
 const requireAuth = (req, res, next) => {
 	const token = req.cookies.jwt;
@@ -30,6 +31,8 @@ const checkUser = (req, res, next) => {
 			} else {
 				let user = await User.findById(decodedToken.id);
 				res.locals.user = user;
+				let offers = await Offer.find({author: user._id});
+				res.locals.offers = offers;
 				next();
 			}
 		});

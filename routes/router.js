@@ -29,7 +29,7 @@ router.post("/create", requireAuth, controller.createOfferPost);
 router.get("/update/:id", requireAuth, controller.editOfferGet);
 router.put("/update/:id", requireAuth, controller.editOfferPut);
 
-// all jobs for a user
-router.get("/api/:author", requireAuth, controller.allOffersGet);
+// Display offer data
+router.get("/offers/:id", requireAuth, controller.offerGet);
 
 module.exports = router;
