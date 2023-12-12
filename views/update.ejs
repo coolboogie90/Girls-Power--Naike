@@ -1,8 +1,8 @@
 <%- include('partials/header'); -%>
 
 <h2>Update the offer</h2>
-<% console.log(offer.jobTitle) %>
-<form action="/update/<%= offer._id %>" method="POST">
+<% console.log(offer) %>
+<form method="post">
     
 	<label for="jobTitle">Job Title</label>
 	<input type="text" name="jobTitle" value="<%= offer.jobTitle %>" required />
@@ -47,7 +47,7 @@
     <br>
     
     <label for="comments">Comments</label>
-    <textarea name="comments" id="comments" value="<%= offer.comments %>"></textarea><br>
+    <textarea name="comments" id="comments"><%= offer.comments %></textarea><br>
     
     <button>Update</button>
 </form>

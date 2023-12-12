@@ -27,7 +27,7 @@ const handleErrors = (err) => {
 };
 
 // create JWT
-const maxAge = process.env.MAX_AGE || 3 * 24 * 60 * 60;
+const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
 	return jwt.sign({ id }, process.env.JWT_SECRET, {
 		expiresIn: maxAge,
@@ -163,6 +163,7 @@ module.exports.editOfferPost = async (req, res) => {
 		offerStatus,
 		comments,
 	} = req.body;
+	console.log(jobTitle);
 	const offerToUpdate = await Offer.updateOne(
 		{ _id: id },
 		{
@@ -183,7 +184,6 @@ module.exports.editOfferPost = async (req, res) => {
 	//res.status(201).json({ offer : offerToUpdate._id});
 	res.status(201).redirect("/");
 	console.log("Offer updated");
-
 };
 
 
