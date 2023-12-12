@@ -149,7 +149,7 @@ module.exports.editOfferGet = (req, res) => {
 	res.render("update", { offer });
 };
 
-module.exports.editOfferPut = async (req, res) => {
+module.exports.editOfferPost = async (req, res) => {
 	const id = req.params.id;
 	const {
 		jobTitle,
@@ -179,7 +179,10 @@ module.exports.editOfferPut = async (req, res) => {
 			},
 		}
 	);
+	//res.status(201).json({ offer : offerToUpdate._id});
 	res.status(201).redirect("/");
+	console.log("Offer updated");
+
 };
 
 

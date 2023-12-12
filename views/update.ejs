@@ -1,7 +1,8 @@
 <%- include('partials/header'); -%>
 
 <h2>Update the offer</h2>
-<form action="/create" method="POST">
+<% console.log(offer.jobTitle) %>
+<form action="/update/<%= offer._id %>" method="POST">
     
 	<label for="jobTitle">Job Title</label>
 	<input type="text" name="jobTitle" value="<%= offer.jobTitle %>" required />
@@ -55,7 +56,7 @@
 <%- include('partials/footer'); -%>
 
 
-<script>
+<!-- <script>
     const form = document.querySelector("form");
     const jobTitleError = document.querySelector(".jobTitle.error");
     const urlError = document.querySelector(".url.error");
@@ -88,7 +89,7 @@
         
         console.log(jobTitle, url, employerName, employerEmail, origin, status);
         try {
-            const res = await fetch("/create", {
+            const res = await fetch("/update", {
                 method: "POST",
                 body: JSON.stringify({ jobTitle, url, employerName, employerEmail, employerPhone, employerAddress, offerOrigin, offerStatus, comments }),
                 headers: { "Content-Type": "application/json" },
@@ -103,4 +104,4 @@
             console.log(err);
         }
     });
-</script>
+</script> -->

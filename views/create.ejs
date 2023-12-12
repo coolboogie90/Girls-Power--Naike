@@ -1,7 +1,7 @@
 <%- include('partials/header'); -%>
 
 <h2>Create an offer</h2>
-<form action="/create" method="POST">
+<form method="POST">
     
 	<label for="jobTitle">Job Title</label>
 	<input type="text" name="jobTitle" required />
@@ -48,7 +48,7 @@
     <label for="comments">Comments</label>
     <textarea name="comments" id="comments"></textarea><br>
     
-    <button>Save</button>
+    <input type="submit"></input>
 </form>
 
 
@@ -95,9 +95,9 @@
             });
             const data = await res.json();
             console.log(data);
-            if (data.user) {
-                alert('Job offer created successfully!');
-                location.assign("/");
+            if (res.ok) {
+                console.log('Job offer created successfully!');
+                window.location.href = "/";
             }
         } catch (err) {
             console.log(err);
