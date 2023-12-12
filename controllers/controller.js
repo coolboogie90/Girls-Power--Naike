@@ -39,6 +39,15 @@ module.exports.dashboardGet = async (req, res) => {
     res.render("index");
 };
 
+module.exports.filterOffersGet = async (req, res) => {
+  const filterField = req.query.filter === 'date' ? 'updatedAt' : 'offerStatus';
+  const sortOrder = req.query.order === 'dsc' ? -1 : 1;
+
+  const offers = await Offer.find().sort({ [filterField]: sortOrder });
+
+  res.render('partials/offers-grid', { offers });
+};
+
 // Login page
 module.exports.loginGet = (req, res) => {
 	res.render("login");

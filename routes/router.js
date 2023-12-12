@@ -7,6 +7,9 @@ const router = Router();
 // Dashboard
 router.get("/", requireAuth, controller.dashboardGet);
 
+// Filter and order offers
+router.get("/filter-offers", requireAuth, controller.filterOffersGet);
+
 // Login
 router.get("/login", controller.loginGet);
 router.post("/login", controller.loginPost);

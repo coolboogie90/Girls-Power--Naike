@@ -6,10 +6,11 @@
     
     <h2>Welcome <%= user.firstName %> <%= user.lastName %></h2>
     <hr>
-    <div>
+    <div class="container">
         <a href="/create">Create a new offer</a></p>
         <br>
-        <form>
+
+        <form id="filter-form" action="/filter-offers" method="GET">
           <label for="filter">Filter by :</label>
           <select name="filter" id="filter">
               <option value="status">Status</option>
@@ -18,27 +19,28 @@
   
           <label for="order">Order :</label>
           <select name="order" id="order">
-              <option value="asc">Ascendant</option>
-              <option value="dsc">Descendant</option>
+              <option value="asc">Asc.</option>
+              <option value="dsc">Desc.</option>
           </select>
+          <input type="submit" value="Filter"/>
       </form>
-        <% if (offers.length) { %>
-            <div>
-                <h3>My Offers</h3>
-                <% offers.forEach((offer) => { %>
-                <div>
-                    <p><%= offer.offerStatus %></p>
-                    <h4><%= offer.jobTitle %></h4>
-                    <p><%= offer.employerName %></p>
-                    <a href="/offers/<%= offer._id %>">See More</a>
-                </div>
-              <% }); %>
-            </div>
-            <hr>         
-          <% } else { %>
-            <p>No offer found.</p>
-          <% } %>
-    </div>
 
-
+    <%- include('partials/offers-grid'); -%>
+    
     <%- include('partials/footer'); -%>
+
+<script>
+  document.querySelector('#filter-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+      
+    let url = '/filter-offers?' + new URLSearchParams(new FormData(e.target)).toString();
+      
+    let response = await fetch(url, {
+      method: 'GET'
+    });
+      
+    let html = await response.text();
+      
+    document.querySelector('#offers-grid').innerHTML = html;
+  });
+</script>
