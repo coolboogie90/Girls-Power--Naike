@@ -152,6 +152,7 @@ module.exports.editOfferGet = async (req, res) => {
 
 module.exports.editOfferPost = async (req, res) => {
 	const id = req.params.id;
+	console.log(id);
 	const {
 		jobTitle,
 		url,
@@ -163,8 +164,8 @@ module.exports.editOfferPost = async (req, res) => {
 		offerStatus,
 		comments,
 	} = req.body;
-	console.log(jobTitle);
-	const offerToUpdate = await Offer.updateOne(
+	console.log(req.body.jobTitle);
+	await Offer.updateOne(
 		{ _id: id },
 		{
 			$set: {
@@ -185,7 +186,6 @@ module.exports.editOfferPost = async (req, res) => {
 	res.status(201).redirect("/");
 	console.log("Offer updated");
 };
-
 
 // Get offer data
 module.exports.offerGet = async (req, res) => {
