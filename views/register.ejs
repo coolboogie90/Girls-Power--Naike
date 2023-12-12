@@ -1,7 +1,7 @@
 <%- include('partials/header'); -%>
 
 <h2>Register</h2>
-<form action="/register" method="POST">
+<form action="/register" method="POST" enctype="multipart/form-data">
     
 	<label for="firstName">First Name</label>
 	<input type="text" name="firstName" required />
@@ -64,8 +64,8 @@
         const lastName = form.lastName.value;
 		const email = form.email.value;
         const github = form.github.value;
-        const profilePicture = form.profilePicture.value;
-        const resume = form.resume.value;
+        const profilePicture = form.profilePicture.files[0];
+        const resume = form.resume.files[0];
 		const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
 
@@ -75,11 +75,25 @@
 
 		} else {
 			try {
-				const res = await fetch("/register", {
-					method: "POST",
-					body: JSON.stringify({ firstName, lastName, email, github, profilePicture, resume, password, confirmPassword }),
-					headers: { "Content-Type": "application/json" },
-				});
+				const formData = new FormData();
+formData.append('firstName', firstName);
+formData.append('lastName', lastName);
+formData.append('email', email);
+formData.append('github', github);
+formData.append('profilePicture', profilePicture);
+formData.append('resume', resume);
+formData.append('password', password);
+formData.append('confirmPassword', confirmPassword);
+
+			const res = await fetch("/register", {
+				method: "POST",
+				body: formData,
+			});
+				// const res = await fetch("/register", {
+				// 	method: "POST",
+				// 	body: JSON.stringify({ firstName, lastName, email, github, profilePicture, resume, password, confirmPassword }),
+				// 	headers: { "Content-Type": "application/json" },
+				// });
 				const data = await res.json();
 				console.log(data);
 				// if (data.errors) {

@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cloudinary = require('cloudinary').v2;
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
@@ -69,8 +70,6 @@ module.exports.registerPost = async (req, res) => {
 		lastName,
 		email,
 		github,
-		profilePicture,
-		resume,
 		password,
 	} = req.body;
 	try {
@@ -79,8 +78,8 @@ module.exports.registerPost = async (req, res) => {
 			lastName,
 			email,
 			github,
-			profilePicture,
-			resume,
+			profilePicture : req.file.path,
+			resume : req.file.path,
 			password,
 		});
 		const token = createToken(user._id);
