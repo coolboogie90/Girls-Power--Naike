@@ -11,4 +11,10 @@
 
     <header>
         <h1><a href="/">JobApply Tracker</a></h1>
+        <% if(user) {  %>
+            <div class="username"><%= user.firstName %> <%= user.lastName %></div>
+            <a href="/profile"> My Profile</a>
+            <a href="/logout">Log out</a>
+        <% } %>
+
     </header>

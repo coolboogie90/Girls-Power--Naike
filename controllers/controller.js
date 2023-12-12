@@ -143,9 +143,10 @@ module.exports.createOfferPost = async (req, res) => {
 };
 
 // Edit a job page
-module.exports.editOfferGet = (req, res) => {
+module.exports.editOfferGet = async (req, res) => {
 	const id = req.params.id;
-	const offer = Offer.findById(id);
+	const offer = await Offer.findById(id);
+	console.log(offer);
 	res.render("update", { offer });
 };
 
