@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3001;
 
 /* Middleware */
 
-app.use(express.json(), express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 /* View engine */
@@ -30,13 +31,13 @@ app.use(router);
 const dbURI = process.env.MONGODB_URI || process.env.DB_URI;
 
 mongoose
-	.connect(dbURI)
-	.then(() =>
-		app.listen(PORT, () => {
-			console.log(`App listening on port ${PORT}`);
-		})
-	)
-	.catch((err) => console.log(err));
+    .connect(dbURI)
+    .then(() =>
+        app.listen(PORT, () => {
+            console.log(`App listening on port ${PORT}`);
+        })
+    )
+    .catch((err) => console.log(err));
 
 /* For Vercel */
 
