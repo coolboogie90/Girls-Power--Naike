@@ -1,64 +1,65 @@
 <%- include('partials/header'); -%>
 
-<h2>Update the offer</h2>
+    <h2>Update the offer</h2>
 
-<% console.log(offer) %>
+    <% console.log(offer) %>
 
-<form  method="post">
-    
-	<label >Job Title</label>
-	<input type="text" name="jobTitle" value="<%= offer.jobTitle %>"  />
-    <div class="jobTitle error"></div>
+        <form method="post">
 
-	<label >Website</label>
-	<input type="text" name="url" value="<%= offer.url %>"  />
-    <div class="url error"></div>
+            <label>Job Title</label>
+            <input type="text" name="jobTitle" value="<%= offer.jobTitle %>" />
+            <div class="jobTitle error"></div>
 
-	<label>Name</label>
-	<input type="text" name="employerName" value="<%= offer.employerName %>"  />
-	<div class="employerName error"></div>
-    
-	<label >Email of contact</label>
-	<input type="text" name="employerEmail" value="<%= offer.employerEmail %>"  />
-	<div class="employerEmail error"></div>
+            <label>Website</label>
+            <input type="text" name="url" value="<%= offer.url %>" />
+            <div class="url error"></div>
 
-	<label >Phone</label>
-	<input type="text" name="employerPhone"  value="<%= offer.employerPhone %>"/>
-	<br>
+            <label>Name</label>
+            <input type="text" name="employerName" value="<%= offer.employerName %>" />
+            <div class="employerName error"></div>
 
-	<label >Address</label>
-	<input type="text" name="employerAddress" value="<%= offer.employerAddress %>"/>
-    <br>
+            <label>Email of contact</label>
+            <input type="text" name="employerEmail" value="<%= offer.employerEmail %>" />
+            <div class="employerEmail error"></div>
 
-    <label for="offerOrigin">Origin</label>
-    <select name="offerOrigin" id="offerOrigin" value="<%= offer.offerOrigin %>">
-        <option value="Candidature spontanée">Candidature spontanée</option>
-        <option value="Job offer">Job offer</option>
-    </select>
-    <div class="offerOrigin error"></div>
-    <br>
-    
-    <label for="offerStatus">Status</label>
-    <select name="offerStatus" id="offerStatus" value="<%= offer.offerStatus %>">
-        <option value="Interested">Interested</option>
-        <option value="CV sent">Resume sent</option>
-        <option value="Negative">Negative</option>
-        <option value="Interview">Interview</option>
-    </select>
-    <div class="offerStatus error"></div>
-    <br>
-    
-    <label for="comments">Comments</label>
-    <textarea name="comments" id="comments"><%= offer.comments %></textarea><br>
-    
-    <button>Update</button>
-</form>
+            <label>Phone</label>
+            <input type="text" name="employerPhone" value="<%= offer.employerPhone %>" />
+            <br>
 
+            <label>Address</label>
+            <input type="text" name="employerAddress" value="<%= offer.employerAddress %>" />
+            <br>
 
-<%- include('partials/footer'); -%>
+            <label for="offerOrigin">Origin</label>
+            <select name="offerOrigin" id="offerOrigin" value="<%= offer.offerOrigin %>">
+                <option value="Candidature spontanée">Candidature spontanée</option>
+                <option value="Job offer">Job offer</option>
+            </select>
+            <div class="offerOrigin error"></div>
+            <br>
+
+            <label for="offerStatus">Status</label>
+            <select name="offerStatus" id="offerStatus" value="<%= offer.offerStatus %>">
+                <option value="Interested">Interested</option>
+                <option value="CV sent">Resume sent</option>
+                <option value="Negative">Negative</option>
+                <option value="Interview">Interview</option>
+                <option value="Archive">Archive</option>
+            </select>
+            <div class="offerStatus error"></div>
+            <br>
+
+            <label for="comments">Comments</label>
+            <textarea name="comments" id="comments"><%= offer.comments %></textarea><br>
+
+            <button>Update</button>
+        </form>
 
 
-<!-- <script>
+        <%- include('partials/footer'); -%>
+
+
+            <!-- <script>
     const form = document.querySelector("form");
     const jobTitleError = document.querySelector(".jobTitle.error");
     const urlError = document.querySelector(".url.error");

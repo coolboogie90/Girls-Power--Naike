@@ -1,45 +1,49 @@
 <%- include('partials/header'); -%>
 
 
-    <h1>DASHBOARD</h1>
-    <h2>Welcome <%= user.firstName %> <%= user.lastName %></h2>
-    <hr>
-    <div class="container">
-        <a href="/create">Create a new offer</a></p>
-        <br>
+  <h1>DASHBOARD</h1>
+  <h2>Welcome <%= user.firstName %>
+      <%= user.lastName %>
+  </h2>
+  <hr>
+  <div class="container">
+    <a href="/create">Create a new offer</a></p>
+    <br>
+    <a href="/archives">Go To Archives</a></p>
+    <br>
 
-        <form id="filter-form" action="/filter-offers" method="GET">
-          <label for="filter">Filter by :</label>
-          <select name="filter" id="filter">
-              <option value="status">Status</option>
-              <option value="date">Date</option>
-          </select>
-  
-          <label for="order">Order :</label>
-          <select name="order" id="order">
-              <option value="asc">Asc.</option>
-              <option value="dsc">Desc.</option>
-          </select>
-          <input type="submit" value="Filter"/>
-      </form>
+    <form id="filter-form" action="/filter-offers" method="GET">
+      <label for="filter">Filter by :</label>
+      <select name="filter" id="filter">
+        <option value="status">Status</option>
+        <option value="date">Date</option>
+      </select>
 
-      
-    <%- include('partials/offers-grid'); -%>
-    
-    <%- include('partials/footer'); -%>
+      <label for="order">Order :</label>
+      <select name="order" id="order">
+        <option value="asc">Asc.</option>
+        <option value="dsc">Desc.</option>
+      </select>
+      <input type="submit" value="Filter" />
+    </form>
 
-<script>
-  document.querySelector('#filter-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-      
-    let url = '/filter-offers?' + new URLSearchParams(new FormData(e.target)).toString();
-      
-    let response = await fetch(url, {
-      method: 'GET'
-    });
-      
-    let html = await response.text();
-      
-    document.querySelector('#offers-grid').innerHTML = html;
-  });
-</script>
+
+    <%- include('partials/dashboard-grid'); -%>
+
+      <%- include('partials/footer'); -%>
+
+        <script>
+          document.querySelector('#filter-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            let url = '/filter-offers?' + new URLSearchParams(new FormData(e.target)).toString();
+
+            let response = await fetch(url, {
+              method: 'GET'
+            });
+
+            let html = await response.text();
+
+            document.querySelector('#dashboard-grid').innerHTML = html;
+          });
+        </script>

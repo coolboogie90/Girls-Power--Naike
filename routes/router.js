@@ -5,7 +5,7 @@ const controller = require("../controllers/controller");
 const router = Router();
 
 // Dashboard
-router.get("/", requireAuth, controller.dashboardGet);
+router.get("/dashboard", requireAuth, controller.dashboardGet);
 
 // Filter and order offers
 router.get("/filter-offers", requireAuth, controller.filterOffersGet);
@@ -28,11 +28,18 @@ router.get("/profile", requireAuth, controller.profileGet);
 router.get("/create", requireAuth, controller.createOfferGet);
 router.post("/create", requireAuth, controller.createOfferPost);
 
+// Display job data
+router.get("/offers/:id", requireAuth, controller.offerGet);
+
 // Edit a job
 router.get("/update/:id", requireAuth, controller.editOfferGet);
 router.post("/update/:id", requireAuth, controller.editOfferPost);
 
-// Display offer data
-router.get("/offers/:id", requireAuth, controller.offerGet);
+// Delete a job
+router.get("/delete/:id", requireAuth, controller.deleteOfferPost);
+
+// Archive a job
+router.get("/archives", requireAuth, controller.archiveOfferGet);
+router.post("/archives/:id", requireAuth, controller.archiveOfferPost);
 
 module.exports = router;

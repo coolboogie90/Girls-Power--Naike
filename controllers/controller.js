@@ -48,7 +48,7 @@ module.exports.filterOffersGet = async (req, res) => {
         author: new ObjectId(currentUserId),
     }).sort({ [filterField]: sortOrder });
 
-    res.render("partials/offers-grid", { offers });
+    res.render("partials/dashboard-grid", { offers });
 };
 
 // Login page
@@ -146,7 +146,7 @@ module.exports.createOfferPost = async (req, res) => {
             comments,
             author: currentUserId,
         });
-        res.status(201).redirect("/");
+        res.status(201).redirect("/dashboard");
         console.log("Offer created");
     } catch (err) {
         const errors = handleErrors(err);
@@ -195,7 +195,7 @@ module.exports.editOfferPost = async (req, res) => {
         }
     );
     //res.status(201).json({ offer : offerToUpdate._id});
-    res.status(201).redirect("/");
+    res.status(201).redirect("/dashboard");
     console.log("Offer updated");
 };
 
@@ -207,3 +207,29 @@ module.exports.offerGet = async (req, res) => {
 };
 
 // Delete a job
+module.exports.deleteOfferPost = async (req, res) => {
+    const id = req.params.id;
+    await Offer.deleteOne({ _id: id });
+    res.status(201).redirect("/dashboard");
+    console.log("Offer deleted");
+};
+
+// Archive a job
+module.exports.archiveOfferGet = async (req, res) => {
+    res.render("archives");
+};
+
+module.exports.archiveOfferPost = async (req, res) => {
+    const id = req.params.id;
+    await Offer.updateOne(
+        { _id: id },
+        {
+            $set: {
+                offerStatus: "Archive",
+                updatedAt: Date.now(),
+            },
+        }
+    );
+    res.status(201).redirect("/dashboard");
+    console.log("Offer archived");
+};

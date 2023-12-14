@@ -1,20 +1,41 @@
 <%- include('partials/header'); -%>
 
-<a href="/">Back to the dashboard</a>
-<h1>OFFER</h1>
-<hr>
-<div id="offer">
-    <p><%= offer.jobTitle %></p>
-    <p><%= offer.url %></p>
-    <p><%= offer.employerName %></p>
-    <p><%= offer.employerEmail %></p>
-    <p><%= offer.employerPhone %></p>
-    <p><%= offer.employerAddress %></p>
-    <p><%= offer.offerOrigin %></p>
-    <p><%= offer.offerStatus %></p>
-    <p><%= offer.comments %></p>
-    <a href="/update/<%= offer._id %>">UPDATE</a>
+    <a href="/dashboard">Back to the dashboard</a>
+    <h1>OFFER</h1>
+    <hr>
+    <div id="offer">
+        <p>
+            <%= offer.jobTitle %>
+        </p>
+        <p>
+            <%= offer.url %>
+        </p>
+        <p>
+            <%= offer.employerName %>
+        </p>
+        <p>
+            <%= offer.employerEmail %>
+        </p>
+        <p>
+            <%= offer.employerPhone %>
+        </p>
+        <p>
+            <%= offer.employerAddress %>
+        </p>
+        <p>
+            <%= offer.offerOrigin %>
+        </p>
+        <p>
+            <%= offer.offerStatus %>
+        </p>
+        <p>
+            <%= offer.comments %>
+        </p>
+        <a href="/update/<%= offer._id %>">Update</a>
+        <form id="archive-form" action="/archives/<%= offer._id %>" method="POST">
+            <input type="submit" value="Archive" />
+        </form>
+        <a href="/delete/<%= offer._id %>">DELETE</a>
+    </div>
 
-</div>
-
-<%- include('partials/footer'); -%>
+    <%- include('partials/footer'); -%>
