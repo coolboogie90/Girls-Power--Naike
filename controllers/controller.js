@@ -1,7 +1,9 @@
 require("dotenv").config();
+const storage = require("../middleware/cloudinary")
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 
 let currentUserId;
 
@@ -86,12 +88,19 @@ module.exports.registerPost = async (req, res) => {
         password,
     } = req.body;
     try {
+        //const field = req.file('profilePicture');
+
+        const upload = multer({ storage });
+
+        const profilePictureResult = await upload.single('profilePicture');
+        const profilePictureUrl = profilePictureResult.secure_url;
+
         const user = await User.create({
             firstName,
             lastName,
             email,
             github,
-            profilePicture,
+            profilePicture: profilePictureUrl,
             resume,
             password,
         });
