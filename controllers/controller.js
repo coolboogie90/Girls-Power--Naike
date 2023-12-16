@@ -24,7 +24,7 @@ const storage = new CloudinaryStorage({
     },
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 //-------------------------------------------------
 
 // Handle errors
@@ -137,7 +137,7 @@ module.exports.registerPost = async (req, res) => {
 // Logout page
 module.exports.logoutGet = (req, res) => {
     res.cookie("jwt", "", { maxAge: 1 });
-    res.redirect("/login");
+    res.redirect("/");
 };
 
 // Profile page

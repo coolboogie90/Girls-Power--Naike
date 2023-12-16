@@ -11,7 +11,7 @@ router.get("/dashboard", requireAuth, controller.dashboardGet);
 router.get("/filter-offers", requireAuth, controller.filterOffersGet);
 
 // Login
-router.get("/login", controller.loginGet);
+router.get("/", controller.loginGet);
 router.post("/login", controller.loginPost);
 
 // Register

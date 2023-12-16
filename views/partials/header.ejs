@@ -10,14 +10,15 @@
 <body>
 
     <header>
-        <h1><a href="/dashboard">JobApply Tracker</a></h1>
         <% if(user) { %>
+            <h1><a href="/dashboard">JobApply Tracker</a></h1>
             <div class="username">
                 <%= user.firstName %>
-                    <%= user.lastName %>
+                <%= user.lastName %>
             </div>
             <a href="/profile"> My Profile</a>
             <a href="/logout">Log out</a>
+            <% } else { %>
+                <h1><a href="/">JobApply Tracker</a></h1>           
             <% } %>
-
     </header>
