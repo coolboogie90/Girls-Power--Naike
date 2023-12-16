@@ -5,6 +5,28 @@ const jwt = require("jsonwebtoken");
 
 let currentUserId;
 
+//-------------Cloudinary config------------------
+const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        allowedFormats: ["png", "jpg"],
+        folder: "users-profile-pictures",
+    },
+});
+
+const upload = multer({ storage });
+//-------------------------------------------------
+
 // Handle errors
 const handleErrors = (err) => {
     console.log(err.message, err.code);
@@ -80,24 +102,31 @@ module.exports.registerPost = async (req, res) => {
         firstName,
         lastName,
         email,
-        github,
         profilePicture,
+        github,
         resume,
         password,
     } = req.body;
+    
     try {
+        const result = await upload.single("profilePicture", req);
+        if (!result || !result.file) throw Error('No file uploaded');
+        
+        const profilePictureUrl = result.secure_url;
+
         const user = await User.create({
             firstName,
             lastName,
             email,
             github,
-            profilePicture,
+            profilePicture: profilePictureUrl,
             resume,
             password,
         });
         const token = createToken(user._id);
         currentUserId = user._id;
         res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+        //res.status(201).json({ user: user._id });
         res.status(201).json({ user: user._id });
     } catch (err) {
         const errors = handleErrors(err);
