@@ -1,12 +1,12 @@
 <%- include('partials/header'); -%>
 
-
+<div class="container">
   <h1>DASHBOARD</h1>
   <h2>Welcome <%= user.firstName %>
       <%= user.lastName %>
   </h2>
   <hr>
-  <div class="container">
+  
     <a href="/create">Create a new offer</a></p>
     <br>
     <a href="/archives">Go To Archives</a></p>
@@ -29,6 +29,8 @@
 
 
     <%- include('partials/dashboard-grid'); -%>
+</div>
+  
 
       <%- include('partials/footer'); -%>
 

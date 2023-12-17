@@ -1,0 +1,23 @@
+@import 'partials/01-variables';
+@import 'partials/02-reset';
+@import 'partials/03-mixins';
+@import 'partials/04-breakpoints';
+@import 'partials/05-buttons';
+@import 'partials/06-dashboard';
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: $barlow;
+    background: $background;
+    color: white;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1110px;
+    padding: 0 1.5rem;
+    outline: 1px solid red;
+}

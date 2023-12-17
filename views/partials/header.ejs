@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobApply Tracker</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
 
     <header>
-        <% if(user) { %>
+        <div class="container">
+           <% if(user) { %>
             <h1><a href="/dashboard">JobApply Tracker</a></h1>
             <div class="username">
                 <%= user.firstName %>
@@ -20,5 +22,7 @@
             <a href="/logout">Log out</a>
             <% } else { %>
                 <h1><a href="/">JobApply Tracker</a></h1>           
-            <% } %>
+            <% } %> 
+        </div>
+        
     </header>
