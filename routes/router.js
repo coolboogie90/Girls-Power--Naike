@@ -5,10 +5,8 @@ const controller = require("../controllers/controller");
 const router = Router();
 
 // Dashboard
-router.get("/dashboard", requireAuth, controller.dashboardGet);
-
 // Filter and order offers
-router.get("/filter-offers", requireAuth, controller.filterOffersGet);
+router.get("/dashboard", requireAuth, controller.dashboardGet);
 
 // Login
 router.get("/", controller.loginGet);

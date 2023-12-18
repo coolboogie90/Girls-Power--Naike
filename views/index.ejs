@@ -1,35 +1,56 @@
 <%- include('partials/header'); -%>
 
 <div class="container">
-  <h1>DASHBOARD</h1>
-  <h2>Welcome <%= user.firstName %>
-      <%= user.lastName %>
-  </h2>
-  <hr>
+    <section class="dashboard">
+    <h1>DASHBOARD</h1>    
+      <a href="/create">Create a new offer</a></p>
+      <br>
+      <a href="/archives">Go To Archives</a></p>
+      <br>
   
-    <a href="/create">Create a new offer</a></p>
-    <br>
-    <a href="/archives">Go To Archives</a></p>
-    <br>
+      <form id="filter-form" action="/dashboard" method="GET">
+        <label for="filter">Filter by :</label>
+        <select name="filter" id="filter">
+          <option value="status">Status</option>
+          <option value="date">Date</option>
+        </select>
+  
+        <label for="order">Order :</label>
+        <select name="order" id="order">
+          <option value="asc">Asc.</option>
+          <option value="dsc">Desc.</option>
+        </select>
+        <input type="submit" value="Filter" />
+      </form>
+  
+  
+      <% if (offers.length) { %>
+        <h3>My Offers</h3>
+        <div id="dashboard-grid" class="dashboard__grid">
+          <% offers.forEach((offer)=> { %>
+            <% if(offer.offerStatus !=="Archive" ) { %>
+              <div class="dashboard__card">
+                <p class="offerStatus">
+                  <%= offer.offerStatus %>
+                </p>
+                <h4>
+                  <%= offer.jobTitle %>
+                </h4>
+                <p>
+                  <%= offer.employerName %>
+                </p>
+                <a href="/offers/<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
+              </div>
+              <% } %>
+                <% }); %>
+        </div>
+        <% } else { %>
+          <p>No offer found.</p>
+          <% } %>
+            </div>
 
-    <form id="filter-form" action="/filter-offers" method="GET">
-      <label for="filter">Filter by :</label>
-      <select name="filter" id="filter">
-        <option value="status">Status</option>
-        <option value="date">Date</option>
-      </select>
-
-      <label for="order">Order :</label>
-      <select name="order" id="order">
-        <option value="asc">Asc.</option>
-        <option value="dsc">Desc.</option>
-      </select>
-      <input type="submit" value="Filter" />
-    </form>
-
-
-    <%- include('partials/dashboard-grid'); -%>
-</div>
+    </section>
+  </div>
   
 
       <%- include('partials/footer'); -%>
@@ -38,7 +59,7 @@
           document.querySelector('#filter-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            let url = '/filter-offers?' + new URLSearchParams(new FormData(e.target)).toString();
+            let url = '/dashboard?' + new URLSearchParams(new FormData(e.target)).toString();
 
             let response = await fetch(url, {
               method: 'GET'
@@ -46,6 +67,6 @@
 
             let html = await response.text();
 
-            document.querySelector('#dashboard-grid').innerHTML = html;
+            document.querySelector('body').innerHTML = html;
           });
         </script>

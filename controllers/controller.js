@@ -1,12 +1,13 @@
 require("dotenv").config();
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
+const {ObjectId} = require('mongodb');
 const jwt = require("jsonwebtoken");
 
 let currentUserId;
 
 //-------------Cloudinary config------------------
-const cloudinary = require("cloudinary").v2;
+/*const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
@@ -25,6 +26,7 @@ const storage = new CloudinaryStorage({
 });
 
 const upload = multer({ storage: storage });
+*/
 //-------------------------------------------------
 
 // Handle errors
@@ -58,20 +60,17 @@ const createToken = (id) => {
 
 // Dashboard page
 module.exports.dashboardGet = async (req, res) => {
-    res.render("index");
-};
-
-module.exports.filterOffersGet = async (req, res) => {
     const filterField =
         req.query.filter === "date" ? "updatedAt" : "offerStatus";
     const sortOrder = req.query.order === "dsc" ? -1 : 1;
-
+    
     const offers = await Offer.find({
         author: new ObjectId(currentUserId),
     }).sort({ [filterField]: sortOrder });
-
-    res.render("partials/dashboard-grid", { offers });
+    
+    res.render("index", { offers });
 };
+
 
 // Login page
 module.exports.loginGet = (req, res) => {
@@ -109,17 +108,17 @@ module.exports.registerPost = async (req, res) => {
     } = req.body;
     
     try {
-        const result = await upload.single("profilePicture", req);
-        if (!result || !result.file) throw Error('No file uploaded');
+        // const result = await upload.single("profilePicture", req);
+        // if (!result || !result.file) throw Error('No file uploaded');
         
-        const profilePictureUrl = result.secure_url;
+        // const profilePictureUrl = result.secure_url;
 
         const user = await User.create({
             firstName,
             lastName,
             email,
             github,
-            profilePicture: profilePictureUrl,
+            profilePicture,
             resume,
             password,
         });

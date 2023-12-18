@@ -3,7 +3,6 @@
 @import 'partials/03-mixins';
 @import 'partials/04-breakpoints';
 @import 'partials/05-buttons';
-@import 'partials/06-dashboard';
 
 html {
     font-size: 16px;
@@ -12,7 +11,7 @@ html {
 body {
     font-family: $barlow;
     background: $background;
-    color: white;
+    color: $main-blue;
 }
 
 .container {
@@ -20,4 +19,10 @@ body {
     max-width: 1110px;
     padding: 0 1.5rem;
     outline: 1px solid red;
+    background-color: white;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 }
+
+@import 'partials/header';
+@import 'partials/index';
+@import 'partials/footer';
