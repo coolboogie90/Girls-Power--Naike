@@ -127,13 +127,58 @@ body {
 }
 .dashboard__card .more {
   border-radius: 10px;
-  background: #E8AB36;
-  color: white;
+  background: white;
+  color: #E8AB36;
+  border: 1px solid #E8AB36;
   align-self: end;
   padding: 10px;
   font-weight: 400;
   text-align: center;
   font-size: 1.15rem;
+}
+.dashboard__card .more:hover {
+  background: #E8AB36;
+  color: white;
+  border: 1px solid white;
+}
+.dashboard__card #openDialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.dashboard__card #openDialog.open {
+  opacity: 1;
+}
+.dashboard__card #openDialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dashboard__card #closeDialog {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #333; /* change the color of the button */
+  padding: 0;
+  cursor: pointer;
+}
+.dashboard__card #closeDialog:hover {
+  color: #666; /* change the color of the button when hovering over it */
+}
+.dashboard__card #closeDialog:active {
+  color: #999; /* change the color of the button when clicking on it */
 }
 
 .footer {

@@ -1,7 +1,7 @@
 <%- include('partials/header'); -%>
 
 <div class="container">
-    <section class="dashboard">
+  <section class="dashboard">
     <h1>DASHBOARD</h1>    
       <a href="/create">Create a new offer</a></p>
       <br>
@@ -40,33 +40,87 @@
                   <%= offer.employerName %>
                 </p>
                 <a href="/offers/<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
+                <dialog id="openDialog">
+                    <button id="closeDialog">X</button>
+                    <p>
+                        <%= offer.jobTitle %>
+                    </p>
+                    <p>
+                        <%= offer.url %>
+                    </p>
+                    <p>
+                        <%= offer.employerName %>
+                    </p>
+                    <p>
+                        <%= offer.employerEmail %>
+                    </p>
+                    <p>
+                        <%= offer.employerPhone %>
+                    </p>
+                    <p>
+                        <%= offer.employerAddress %>
+                    </p>
+                    <p>
+                        <%= offer.offerOrigin %>
+                    </p>
+                    <p>
+                        <%= offer.offerStatus %>
+                    </p>
+                    <p>
+                        <%= offer.comments %>
+                    </p>
+                    <a href="/update/<%= offer._id %>">Update</a>
+                    <form id="archive-form" action="/archives/<%= offer._id %>" method="POST">
+                        <input type="submit" value="Archive" />
+                    </form>
+                    <a href="/delete/<%= offer._id %>">DELETE</a>           
+                </dialog>
               </div>
-              <% } %>
-                <% }); %>
+            <% } %>
+          <% }); %>
         </div>
+
         <% } else { %>
           <p>No offer found.</p>
           <% } %>
-            </div>
 
-    </section>
-  </div>
+  </section>
+</div>
   
 
       <%- include('partials/footer'); -%>
 
-        <script>
-          document.querySelector('#filter-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
+<script>
+  document.querySelector('#filter-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-            let url = '/dashboard?' + new URLSearchParams(new FormData(e.target)).toString();
+    let url = '/dashboard?' + new URLSearchParams(new FormData(e.target)).toString();
 
-            let response = await fetch(url, {
-              method: 'GET'
-            });
+    let response = await fetch(url, {
+      method: 'GET'
+    });
 
-            let html = await response.text();
+    let html = await response.text();
 
-            document.querySelector('body').innerHTML = html;
-          });
-        </script>
+    document.querySelector('body').innerHTML = html;
+  });
+  
+  /*-----Dialog-----*/
+  const links = document.querySelectorAll('.more');
+  const dialog = document.querySelector('#openDialog');
+  const closeButton = document.querySelector('#closeDialog');
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      dialog.showModal();
+      dialog.classList.add('open');
+    });
+  });
+
+  closeButton.addEventListener('click', () => {
+    dialog.classList.remove('open');
+    setTimeout(() => dialog.close(), 300);
+  });
+
+</script>
