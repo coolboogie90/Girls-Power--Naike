@@ -13,6 +13,11 @@
         letter-spacing: 0.5px;
     }
     
+    &__logo {
+        outline: 1px solid red;
+        padding: .625rem 0;
+    }
+
     &__logo span {
         color: $cta-blue;
     }
@@ -27,15 +32,38 @@
         letter-spacing: 0.5px;
         gap: 1.5rem;
         padding: .625rem 0;
+        transition: transform 0.3s ease-in-out;
+
+        &.nav-active {
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) { // adjust this value according to your needs
+            display: none;
+            transform: translateY(-100%);
+        }   
     }
 
     &__nav p {
-        margin-right: 2.5rem;
+        margin-right: 2rem;
+        outline: 1px solid red;
+
+        @media (max-width: 768px) { // adjust this value according to your needs
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+
     }
 
     &__nav a {
         font-weight: 600;
         text-transform: uppercase;
+
+        @media (max-width: 768px) { // adjust this value according to your needs
+            font-size: 0.875rem;
+        }
     }
     
     &__nav a:hover {
@@ -48,10 +76,54 @@
         border: 1px solid $cta-orange;
         border-radius: 10px;
         padding: 8px 20px;
+
+        @media (max-width: 768px) { // adjust this value according to your needs
+            padding: 4px 10px;
+        }
     }
 
     &__nav a:last-child:hover {
         background: $cta-orange;
         color: white;
+    }
+
+    &__burger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 2rem;
+        height: 2rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 10;
+    
+        div {
+            width: 2rem;
+            height: 0.25rem;
+            background: #333; // adjust this color according to your needs
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+
+        }
+
+        &.toggle div {
+            &:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            &:nth-child(2) {
+                opacity: 0;
+            }
+            &:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: flex;
+        }
     }
 }

@@ -63,6 +63,10 @@ body {
   line-height: 1.5;
   letter-spacing: 0.5px;
 }
+.header__logo {
+  outline: 1px solid red;
+  padding: 0.625rem 0;
+}
 .header__logo span {
   color: #0088aa;
 }
@@ -76,13 +80,37 @@ body {
   letter-spacing: 0.5px;
   gap: 1.5rem;
   padding: 0.625rem 0;
+  transition: transform 0.3s ease-in-out;
+}
+.header__nav.nav-active {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+}
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
+    transform: translateY(-100%);
+  }
 }
 .header__nav p {
-  margin-right: 2.5rem;
+  margin-right: 2rem;
+  outline: 1px solid red;
+}
+@media (max-width: 768px) {
+  .header__nav p {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
 }
 .header__nav a {
   font-weight: 600;
   text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .header__nav a {
+    font-size: 0.875rem;
+  }
 }
 .header__nav a:hover {
   color: #E8AB36;
@@ -94,15 +122,90 @@ body {
   border-radius: 10px;
   padding: 8px 20px;
 }
+@media (max-width: 768px) {
+  .header__nav a:last-child {
+    padding: 4px 10px;
+  }
+}
 .header__nav a:last-child:hover {
   background: #E8AB36;
   color: white;
 }
+.header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+.header__burger div {
+  width: 2rem;
+  height: 0.25rem;
+  background: #333;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+.header__burger.toggle div:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.header__burger.toggle div:nth-child(2) {
+  opacity: 0;
+}
+.header__burger.toggle div:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+@media (max-width: 768px) {
+  .header__burger {
+    display: flex;
+  }
+}
 
 .dashboard {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.dashboard .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.dashboard__create {
+  display: flex;
+  max-width: 300px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem;
+  background: #0088aa;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: ease-in-out 0.2s;
+}
+.dashboard__create i {
+  font-size: 1.5rem;
+}
+.dashboard__create:hover {
+  transform: scale(1.05);
+  background: #009cc4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.dashboard__create:active {
+  transform: scale(1);
+  background: #007491;
 }
 .dashboard__grid {
+  outline: 1px solid red;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
@@ -184,4 +287,6 @@ body {
 .footer {
   position: fixed;
   bottom: 0;
+  justify-content: center;
+  align-items: center;
 }

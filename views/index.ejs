@@ -2,11 +2,11 @@
 
 <div class="container">
   <section class="dashboard">
-    <h1>DASHBOARD</h1>    
-      <a href="/create">Create a new offer</a></p>
-      <br>
+    <h1>DASHBOARD</h1> 
+    <div class="container">
+      <a href="/create" class="dashboard__create"><i class='bx bx-briefcase' ></i></i>Create a new job offer</a></p>
+    </div>   
       <a href="/archives">Go To Archives</a></p>
-      <br>
   
       <form id="filter-form" action="/dashboard" method="GET">
         <label for="filter">Filter by :</label>
@@ -123,4 +123,12 @@
     setTimeout(() => dialog.close(), 300);
   });
 
+  /*-----Nav-----*/
+  const burger = document.querySelector('.header__burger');
+  const nav = document.querySelector('.header__nav');
+
+  burger.addEventListener('click', () => {
+    nav.classList.toggle('nav-active');
+    burger.classList.toggle('toggle');
+  });
 </script>
