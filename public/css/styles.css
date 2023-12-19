@@ -41,6 +41,13 @@ body {
   color: #183a55;
 }
 
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1110px;
@@ -213,6 +220,24 @@ body {
   transform: scale(1);
   background: #007491;
 }
+.dashboard__archives {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 0;
+}
+.dashboard__archives i {
+  font-size: 1rem;
+}
+.dashboard__archives:hover {
+  text-decoration: underline;
+}
+.dashboard__archives:hover:hover::before {
+  text-decoration: none;
+}
+.dashboard__archives:active {
+  color: #007491;
+}
 .dashboard__grid {
   outline: 1px solid red;
   display: grid;
@@ -282,15 +307,18 @@ body {
   background: none;
   border: none;
   font-size: 1.5em;
-  color: #333; /* change the color of the button */
+  color: #333;
+  /* change the color of the button */
   padding: 0;
   cursor: pointer;
 }
 .dashboard__card #closeDialog:hover {
-  color: #666; /* change the color of the button when hovering over it */
+  color: #666;
+  /* change the color of the button when hovering over it */
 }
 .dashboard__card #closeDialog:active {
-  color: #999; /* change the color of the button when clicking on it */
+  color: #999;
+  /* change the color of the button when clicking on it */
 }
 
 .footer {
