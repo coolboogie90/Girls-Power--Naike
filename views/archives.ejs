@@ -6,7 +6,6 @@
 
     <% if (offers.length) { %>
       <h3>Past Offers</h3>
-      <p>Here you can find all the offers you have applied to.</p>
       <div id="dashboard-grid" class="dashboard__grid">
 
         <% offers.forEach((offer)=> { %>
@@ -21,7 +20,8 @@
               <p>
                 <%= offer.employerName %>
               </p>
-              <a href="/offers/<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>            </div>
+              <a href="/offers/<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
+            </div>
             <% } %>
               <% }); %>
       </div>

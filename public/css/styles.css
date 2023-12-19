@@ -48,6 +48,13 @@ h1 {
   margin-bottom: 1rem;
 }
 
+h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1110px;
@@ -200,7 +207,7 @@ h1 {
   max-width: 300px;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem 1.5rem;
+  padding: 1rem;
   background: #0088aa;
   color: white;
   border-radius: 10px;
@@ -228,15 +235,30 @@ h1 {
 }
 .dashboard__archives i {
   font-size: 1rem;
-}
-.dashboard__archives:hover {
-  text-decoration: underline;
-}
-.dashboard__archives:hover:hover::before {
   text-decoration: none;
 }
-.dashboard__archives:active {
+.dashboard__archives i i:hover {
+  color: #E8AB36;
+}
+.dashboard__archives .archives-link:hover {
+  color: #E8AB36;
+}
+.dashboard__archives .archives-link:active {
   color: #007491;
+}
+.dashboard__filter {
+  background: #183a55;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 2px;
+  border: none;
+  outline: none;
+  line-height: 0.5rem;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
 }
 .dashboard__grid {
   outline: 1px solid red;
@@ -308,17 +330,67 @@ h1 {
   border: none;
   font-size: 1.5em;
   color: #333;
-  /* change the color of the button */
   padding: 0;
   cursor: pointer;
 }
 .dashboard__card #closeDialog:hover {
   color: #666;
-  /* change the color of the button when hovering over it */
 }
 .dashboard__card #closeDialog:active {
   color: #999;
-  /* change the color of the button when clicking on it */
+}
+.dashboard .dialog__content {
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard__offer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+.dashboard__offer span {
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+.dashboard__offer--title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #183a55;
+  border-bottom: 3px double #183a55;
+}
+.dashboard__offer--url a {
+  color: #0088aa;
+}
+.dashboard__offer--url a:hover {
+  color: #E8AB36;
+  font-weight: 600;
+}
+.dashboard__offer--name {
+  color: #183a55;
+}
+.dashboard__offer--email {
+  color: #183a55;
+}
+.dashboard__offer--phone {
+  color: #183a55;
+}
+.dashboard__offer--address {
+  color: #183a55;
+}
+.dashboard__offer--origin {
+  color: #183a55;
+}
+.dashboard__offer--status {
+  color: #183a55;
+}
+.dashboard__offer--comments {
+  font-style: italic;
+}
+.dashboard__offer--menu {
+  align-self: flex-end;
 }
 
 .footer {
