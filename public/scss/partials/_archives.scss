@@ -1,0 +1,34 @@
+.dashboard {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    &__back {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 0;
+
+        &__back+h1 {
+            margin-bottom: 1.25rem;
+        }
+
+        i {
+            font-size: 1rem;
+            text-decoration: none;
+
+            i:hover {
+                color: $cta-orange;
+            }
+        }
+
+        .dashboard-link:hover {
+            color: $cta-orange;
+        }
+
+        .dashboard-link:active {
+            color: darken($cta-blue, 5%);
+        }
+    }
+}

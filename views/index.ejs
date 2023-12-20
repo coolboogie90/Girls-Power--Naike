@@ -3,27 +3,27 @@
   <div class="container">
     <section class="dashboard">
       <h1>DASHBOARD</h1>
-      <div class="container">
+      <div class="container btn-create">
         <a href="/create" class="dashboard__create"><i class='bx bx-briefcase'></i></i>Create a new job offer</a>
       </div>
       <div class="dashboard__archives"><i class='bx bxs-chevrons-right'></i>
         <a href="/archives" class="archives-link">Go To Archives</a>
       </div>
 
-      <form id="filter-form" action="/dashboard" method="GET" class="filter-form">
+      <form id="filter-form" action="/dashboard" method="GET">
         <div class="form-group">
-          <label for="filter">Filter by :</label>
+          <label for="filter">Filter by: </label>
           <select name="filter" id="filter">
-              <option value="status">Status</option>
-              <option value="date">Date</option>
+            <option value="status">Status</option>
+            <option value="date">Date</option>
           </select>
         </div>
-        
+
         <div class="form-group">
-          <label for="order">Order :</label>
+          <label for="order">Order: </label>
           <select name="order" id="order">
-              <option value="asc">Asc.</option>
-              <option value="dsc">Desc.</option>
+            <option value="asc">Asc.</option>
+            <option value="dsc">Desc.</option>
           </select>
         </div>
 
@@ -46,7 +46,8 @@
                 <p>
                   <%= offer.employerName %>
                 </p>
-                <a href="/offers/<%= offer._id %>" id="link-<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
+                <a href="/offers/<%= offer._id %>" id="link-<%= offer._id %>" class="more"><i
+                    class='bx bx-plus'></i></a>
 
                 <dialog id="dialog-<%= offer._id %>" class="openDialog">
                   <button class="closeDialog">X</button>
@@ -82,13 +83,19 @@
                         <%= offer.comments %>
                       </p>
                     </div>
+
                     <div class="dashboard__offer--menu">
-                      <a href="/update/<%= offer._id %>"><i class='bx bx-edit'></i></a>
-                      <form id="archive-form" action="/archives/<%= offer._id %>" method="POST">
-                        <input type="submit" value="Archive" />
+                      <form class="btn-form update" action="/update/<%= offer._id %>" method="GET">
+                        <button><i class='bx bx-edit'></i></button>
                       </form>
-                      <a href="/delete/<%= offer._id %>">DELETE</a>
+                      <form class="btn-form archive" action="/archives/<%= offer._id %>" method="POST">
+                        <button><i class='bx bx-archive'></i></button>
+                      </form>
+                      <form class="btn-form delete" action="/delete/<%= offer._id %>" method="POST">
+                        <button><i class='bx bx-trash'></i></button>
+                      </form>
                     </div>
+
                   </div>
                 </dialog>
               </div>
@@ -140,8 +147,8 @@
           const openDialog = button.parentElement;
           openDialog.classList.remove('open');
           setTimeout(() => openDialog.close(), 300);
+        });
       });
-    });
 
 
 

@@ -2,35 +2,89 @@
 
 
   <div class="container">
-    <div class="dashboard__archives"><i class='bx bxs-chevrons-left'></i>
-      <a href="/dashboard" class="archives-link">Back To The Dashboard</a>
-    </div>
-    <h1>Archives</h1>
-
-    <% if (offers.length) { %>
-      <h3>Past Offers</h3>
-      <div id="dashboard-grid" class="dashboard__grid">
-
-        <% offers.forEach((offer)=> { %>
-          <% if (offer.offerStatus==="Archive" ) { %>
-            <div class="dashboard__card">
-              <p>
-                <%= offer.offerStatus %>
-              </p>
-              <h4>
-                <%= offer.jobTitle %>
-              </h4>
-              <p>
-                <%= offer.employerName %>
-              </p>
-              <a href="/offers/<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
-            </div>
-            <% } %>
-              <% }); %>
+    <section class="dashboard">
+      <div class="dashboard__back"><i class='bx bxs-chevrons-left'></i>
+        <a href="/dashboard" class="dashboard-link">Back To The Dashboard</a>
       </div>
-      <% } else { %>
-        <p>No offer found.</p>
-        <% } %>
+      <h1>Archives</h1>
+
+      <% if (offers.length) { %>
+        <h3>Past Offers</h3>
+        <div id="dashboard-grid" class="dashboard__grid">
+          <% offers.forEach((offer)=> { %>
+            <% if (offer.offerStatus==="Archive" ) { %>
+              <div class="dashboard__card">
+                <p>
+                  <%= offer.offerStatus %>
+                </p>
+                <h4>
+                  <%= offer.jobTitle %>
+                </h4>
+                <p>
+                  <%= offer.employerName %>
+                </p>
+                <a href="/offers/<%= offer._id %>" id="link-<%= offer._id %>" class="more"><i
+                    class='bx bx-plus'></i></a>
+
+                <dialog id="dialog-<%= offer._id %>" class="openDialog">
+                  <button class="closeDialog">X</button>
+                  <div class="dialog__content">
+                    <div class="dashboard__offer">
+                      <p class="dashboard__offer--title">
+                        <%= offer.jobTitle %>
+                      </p>
+                      <p class="dashboard__offer--url">
+                        <span>URL:</span> <a href="<%= offer.url %>">
+                          <%= offer.url %>
+                        </a>
+                      </p>
+                      <p class="dashboard__offer--name"><span>Employer Name:</span>
+                        <%= offer.employerName %>
+                      </p>
+                      <p class="dashboard__offer--email"><span>Email:</span>
+                        <%= offer.employerEmail %>
+                      </p>
+                      <p class="dashboard__offer--phone"><span>Phone Number:</span>
+                        <%= offer.employerPhone %>
+                      </p>
+                      <p class="dashboard__offer--address"><span>Address:</span>
+                        <%= offer.employerAddress %>
+                      </p>
+                      <p class="dashboard__offer--origin"><span>Origin:</span>
+                        <%= offer.offerOrigin %>
+                      </p>
+                      <p class="dashboard__offer--status"><span>Status:</span>
+                        <%= offer.offerStatus %>
+                      </p>
+                      <p class="dashboard__offer--comments"><span>Comments:</span>
+                        <%= offer.comments %>
+                      </p>
+                    </div>
+
+                    <div class="dashboard__offer--menu">
+                      <form class="btn-form update" action="/update/<%= offer._id %>" method="GET">
+                        <button><i class='bx bx-edit'></i></button>
+                      </form>
+                      <form class="btn-form archive" action="/archives/<%= offer._id %>" method="POST">
+                        <button><i class='bx bx-archive'></i></button>
+                      </form>
+                      <form class="btn-form delete" action="/delete/<%= offer._id %>" method="POST">
+                        <button><i class='bx bx-trash'></i></button>
+                      </form>
+                    </div>
+
+                  </div>
+                </dialog>
+
+              </div>
+              <% } %>
+                <% }); %>
+        </div>
+        <% } else { %>
+          <p>No offer found.</p>
+          <% } %>
+
+    </section>
   </div>
 
   <!-- 
@@ -61,3 +115,27 @@
   </div>
 
   <%- include('partials/footer'); -%>
+
+    <script>
+      /*-----Dialog-----*/
+      const links = document.querySelectorAll('.more');
+
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const dialogId = 'dialog-' + e.target.id.split('-')[1];
+          const dialog = document.querySelector('#' + dialogId);
+          dialog.showModal();
+          dialog.classList.add('open');
+        });
+      });
+
+      const closeButtons = document.querySelectorAll('.closeDialog');
+      closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const openDialog = button.parentElement;
+          openDialog.classList.remove('open');
+          setTimeout(() => openDialog.close(), 300);
+        });
+      });
+    </script>

@@ -4,11 +4,12 @@
     flex-direction: column;
     gap: 1.25rem;
 
-    .container {
+    .container.btn-create {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 0;
+        box-shadow: none;
     }
 
     &__create {
@@ -76,11 +77,11 @@
         line-height: .5rem;
         border-radius: 5px;
         font-size: 1.25rem;
+        margin-top: 0;
         margin-left: 0.5rem;
     }
 
     &__grid {
-        outline: 1px solid red;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1.5rem;
@@ -103,7 +104,8 @@
             line-height: 1.5;
             letter-spacing: 0.5px;
             margin-bottom: 0.5rem;
-            overflow: hidden;;
+            overflow: hidden;
+            ;
         }
 
         .more {
@@ -238,6 +240,40 @@
 
         &--menu {
             align-self: flex-end;
+
+            .btn-form.update button {
+                border: 1px solid $cta-orange;
+                background-color: white;
+                color: $cta-orange;
+
+                &:hover {
+                    background-color: $cta-orange;
+                    color: white;
+
+                }
+            }
+
+            .btn-form.archive button {
+                border: 1px solid grey;
+                background-color: white;
+                color: grey;
+
+                &:hover {
+                    background-color: grey;
+                    color: white;
+                }
+            }
+
+            .btn-form.delete button {
+                border: 1px solid rgb(135, 26, 26);
+                background-color: white;
+                color: rgb(135, 26, 26);
+
+                &:hover {
+                    background-color: rgb(135, 26, 26);
+                    color: white;
+                }
+            }
         }
     }
 }

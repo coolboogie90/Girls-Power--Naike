@@ -2,13 +2,13 @@
 
     <div class="container">
 
-        <a href="/dashboard">Back to the dashboard</a>
-    <h2>Update the offer</h2>
+        <div class="dashboard__back"><i class='bx bxs-chevrons-left'></i>
+            <a href="/dashboard" class="dashboard-link">Back To The Dashboard</a>
+        </div>
+        <h1>Update</h1>
 
-    <% console.log(offer) %>
 
         <form method="post">
-
             <label>Job Title</label>
             <input type="text" name="jobTitle" value="<%= offer.jobTitle %>" />
             <div class="jobTitle error"></div>
@@ -35,7 +35,7 @@
 
             <label for="offerOrigin">Origin</label>
             <select name="offerOrigin" id="offerOrigin" value="<%= offer.offerOrigin %>">
-                <option value="Candidature spontanée">Candidature spontanée</option>
+                <option value="Candidature spontanée">Free Apply</option>
                 <option value="Job offer">Job offer</option>
             </select>
             <div class="offerOrigin error"></div>
@@ -57,12 +57,12 @@
 
             <button>Update</button>
         </form>
-</div>
+    </div>
 
-        <%- include('partials/footer'); -%>
+    <%- include('partials/footer'); -%>
 
 
-            <!-- <script>
+        <!-- <script>
     const form = document.querySelector("form");
     const jobTitleError = document.querySelector(".jobTitle.error");
     const urlError = document.querySelector(".url.error");

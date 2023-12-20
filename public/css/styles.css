@@ -32,7 +32,7 @@ input, textarea {
 }
 
 * {
-  outline: 1px solid red;
+  transition: 0.2s;
 }
 
 html {
@@ -62,7 +62,7 @@ h3 {
 .container {
   margin: 0 auto;
   max-width: 1110px;
-  padding: 0 1.5rem;
+  padding: 1.5rem;
   background-color: white;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5);
 }
@@ -93,11 +93,14 @@ form label {
   margin: 10px 0;
 }
 
-form input[type=text], form input[type=password] {
+form input[type=text],
+form input[type=password],
+form input[type=email],
+form input[type=textarea] {
   width: 100%;
   padding: 10px;
   border-radius: 4px;
-  border: 1px solid #ddd;
+  border: 1px solid #3e8bc8;
 }
 
 form .error {
@@ -109,7 +112,7 @@ form button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #007BFF;
+  background-color: #0088aa;
   color: white;
   border: none;
   border-radius: 4px;
@@ -118,7 +121,7 @@ form button {
 }
 
 form button:hover {
-  background-color: #0056b3;
+  background-color: #183a55;
 }
 
 form p {
@@ -157,6 +160,22 @@ form p a:hover {
 
 #filter-form button {
   width: auto;
+}
+
+.btn-form {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  min-height: auto;
+  padding: 20px;
+  gap: 10px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .btn-form {
+    width: auto;
+    margin: 0;
+  }
 }
 
 .header {
@@ -287,11 +306,12 @@ form p a:hover {
   flex-direction: column;
   gap: 1.25rem;
 }
-.dashboard .container {
+.dashboard .container.btn-create {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
+  box-shadow: none;
 }
 .dashboard__create {
   display: flex;
@@ -349,10 +369,10 @@ form p a:hover {
   line-height: 0.5rem;
   border-radius: 5px;
   font-size: 1.25rem;
+  margin-top: 0;
   margin-left: 0.5rem;
 }
 .dashboard__grid {
-  outline: 1px solid red;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
@@ -484,6 +504,62 @@ form p a:hover {
 .dashboard__offer--menu {
   align-self: flex-end;
 }
+.dashboard__offer--menu .btn-form.update button {
+  border: 1px solid #E8AB36;
+  background-color: white;
+  color: #E8AB36;
+}
+.dashboard__offer--menu .btn-form.update button:hover {
+  background-color: #E8AB36;
+  color: white;
+}
+.dashboard__offer--menu .btn-form.archive button {
+  border: 1px solid grey;
+  background-color: white;
+  color: grey;
+}
+.dashboard__offer--menu .btn-form.archive button:hover {
+  background-color: grey;
+  color: white;
+}
+.dashboard__offer--menu .btn-form.delete button {
+  border: 1px solid rgb(135, 26, 26);
+  background-color: white;
+  color: rgb(135, 26, 26);
+}
+.dashboard__offer--menu .btn-form.delete button:hover {
+  background-color: rgb(135, 26, 26);
+  color: white;
+}
+
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.dashboard__back {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 0;
+}
+.dashboard__back__back + h1 {
+  margin-bottom: 1.25rem;
+}
+.dashboard__back i {
+  font-size: 1rem;
+  text-decoration: none;
+}
+.dashboard__back i i:hover {
+  color: #E8AB36;
+}
+.dashboard__back .dashboard-link:hover {
+  color: #E8AB36;
+}
+.dashboard__back .dashboard-link:active {
+  color: #007491;
+}
 
 .footer {
   width: 100%;
@@ -491,7 +567,7 @@ form p a:hover {
   background: #183a55;
   color: #fff;
   display: flex;
-  position: fixed;
+  padding-top: 2rem;
   bottom: 0;
   justify-content: center;
   align-items: center;
