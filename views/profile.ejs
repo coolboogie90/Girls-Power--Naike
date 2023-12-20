@@ -1,20 +1,39 @@
 <%- include('partials/header'); -%>
 
-<div class="container">
-    <h1>My profile</h1>
-    <hr>
-    <p>Full name: <%= user.firstName %> <%= user.lastName %></p>
-    <p>Email: <%= user.email %></p>
-    <p>GitHub: <%= user.github %></p>
-    <p>Profile picture: <%= user.profilePicture %></p>
-    <button><a href="">Download Resume: <%= user.resume %></a></button>
-    <button><a href="">Upload New Resume</a></button>
-    <button><a href="">Change password</a></button>
-    <hr>
-    <a href="/dashboard">Back to the dashboard</a></p>
-</div>
+    <div class="container">
+        <section class="profile">
+            <div class="dashboard__back"><i class='bx bxs-chevrons-left'></i>
+                <a href="/dashboard" class="dashboard-link">Back To The Dashboard</a>
+            </div>
+            <h1>My profile</h1>
 
+            <div class="profile__content">
+                <div class="profile__picture">
+                    <img src="<%= user.profilePicture %>" alt="profile picture">
+                </div>
+                <div class="profile__info">
+                    <p class="profile__fullName"><span>Full name:</span>
+                        <%= user.firstName %>
+                            <%= user.lastName %>
+                    </p>
+                    <p class="profile__email"><span>Email:</span>
+                        <%= user.email %>
+                    </p>
+                    <p class="profile__github"><span>GitHub:</span>
+                        <a href="<%= user.github %>" target="_blank" class="dashboard-link">
+                            <%= user.github %>
+                        </a>
+                    </p>
 
+                    <div class="profile__buttons">
+                        <button class="profile__buttons--btn">Download Resume <%= user.resume %></button>
+                        <button class="profile__buttons--btn">Upload New Resume</a></button>
+                        <button class="profile__buttons--btn">Change password</a></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
 
     <%- include('partials/footer'); -%>

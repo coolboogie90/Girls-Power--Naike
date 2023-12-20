@@ -1,59 +1,61 @@
 <%- include('partials/header'); -%>
 
-
-
-    <h2>Create an offer</h2>
-    <form method="POST">
-
-        <label for="jobTitle">Job Title</label>
-        <input type="text" name="jobTitle" required />
-        <div class="jobTitle error"></div>
-
-        <label for="url">Website</label>
-        <input type="text" name="url" required />
-        <div class="url error"></div>
-
-        <label for="employerName">Name</label>
-        <input type="text" name="employerName" required />
-        <div class="employerName error"></div>
-
-        <label for="employerEmail">Email of contact</label>
-        <input type="text" name="employerEmail" required />
-        <div class="employerEmail error"></div>
-
-        <label for="employerPhone">Phone</label>
-        <input type="text" name="employerPhone" />
+    <div class="container">
+        <div class="dashboard__back"><i class='bx bxs-chevrons-left'></i>
+            <a href="/dashboard" class="dashboard-link">Back To The Dashboard</a>
+        </div>
         <br>
+        <h1>Create a job offer</h1>
 
-        <label for="employerAddress">Address</label>
-        <input type="text" name="employerAddress" />
-        <br>
+        <form method="POST">
+            <label for="jobTitle">Job Title</label>
+            <input type="text" name="jobTitle" required />
+            <div class="jobTitle error"></div>
 
-        <label for="offerOrigin">Origin</label>
-        <select name="offerOrigin" id="offerOrigin">
-            <option value="Candidature spontanée">Free Apply</option>
-            <option value="Job offer">Job offer</option>
-        </select>
-        <div class="offerOrigin error"></div>
-        <br>
+            <label for="url">Website</label>
+            <input type="text" name="url" required />
+            <div class="url error"></div>
 
-        <label for="offerStatus">Status</label>
-        <select name="offerStatus" id="offerStatus">
-            <option value="Interested">Interested</option>
-            <option value="CV sent">Resume sent</option>
-            <option value="Negative">Negative</option>
-            <option value="Interview">Interview</option>
-        </select>
-        <div class="offerStatus error"></div>
-        <br>
+            <label for="employerName">Name</label>
+            <input type="text" name="employerName" required />
+            <div class="employerName error"></div>
 
-        <label for="comments">Comments</label>
-        <textarea name="comments" id="comments"></textarea><br>
+            <label for="employerEmail">Email of contact</label>
+            <input type="text" name="employerEmail" required />
+            <div class="employerEmail error"></div>
 
-        <input class="envoyer" type="submit" value="Envoyer">
+            <label for="employerPhone">Phone</label>
+            <input type="text" name="employerPhone" />
+            <br>
 
-    </form>
+            <label for="employerAddress">Address</label>
+            <input type="text" name="employerAddress" />
+            <br>
 
+            <label for="offerOrigin">Origin</label>
+            <select name="offerOrigin" id="offerOrigin">
+                <option value="Candidature spontanée">Spontaneous Application</option>
+                <option value="Job offer">Job Offer</option>
+            </select>
+            <div class="offerOrigin error"></div>
+            <br>
+
+            <label for="offerStatus">Status</label>
+            <select name="offerStatus" id="offerStatus">
+                <option value="Interested">Interested</option>
+                <option value="Resume sent">Resume Sent</option>
+                <option value="Negative">Negative</option>
+                <option value="Interview">Interview</option>
+            </select>
+            <div class="offerStatus error"></div>
+            <br>
+
+            <label for="comments">Comments</label>
+            <textarea name="comments" id="comments"></textarea><br>
+
+            <button>Create</button>
+        </form>
+    </div>
 
     <%- include('partials/footer'); -%>
 

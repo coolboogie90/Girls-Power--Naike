@@ -46,7 +46,7 @@ body {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
@@ -96,11 +96,20 @@ form label {
 form input[type=text],
 form input[type=password],
 form input[type=email],
-form input[type=textarea] {
+form select {
+  color: #3e8bc8;
+  font-size: 1rem;
   width: 100%;
   padding: 10px;
   border-radius: 4px;
-  border: 1px solid #3e8bc8;
+  border: 1px solid #8dbbdf;
+}
+
+form input[type=text]:focus,
+form input[type=password]:focus,
+form input[type=email]:focus,
+form select:focus {
+  outline: 1px solid #0088aa;
 }
 
 form .error {
@@ -125,6 +134,7 @@ form button:hover {
 }
 
 form p {
+  color: #3e8bc8;
   text-align: center;
   margin-top: 10px;
 }
@@ -135,6 +145,24 @@ form p a {
 
 form p a:hover {
   color: #E8AB36;
+}
+
+#comments {
+  color: #3e8bc8;
+  font-family: "Barlow", sans-serif;
+  width: 100%;
+  height: 150px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: 1px solid #8dbbdf;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+#comments:focus {
+  border: 2px solid #0088aa;
 }
 
 #filter-form {
@@ -151,6 +179,11 @@ form p a:hover {
     width: auto;
     margin: 0;
   }
+}
+
+#filter-form label {
+  text-wrap: nowrap;
+  margin: 0 10px 0 0;
 }
 
 #filter-form .form-group {
@@ -318,7 +351,7 @@ form p a:hover {
   max-width: 300px;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 12px 10px;
   background: #0088aa;
   color: white;
   border-radius: 10px;
@@ -381,12 +414,45 @@ form p a:hover {
   background: white;
   border-radius: 10px;
   padding: 1rem;
-  box-shadow: 0px 0px 0px 2px rgb(0, 0, 0), 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
   max-height: 150px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: left;
+  border-top: 5px solid #7a7975;
+  border-left: 5px solid #7a7975;
+  border-right: 1px solid #7a7975;
+  border-bottom: 1px solid #7a7975;
+}
+.dashboard__card.offerStatus-1 {
+  border-top: 5px solid #0088aa;
+  border-left: 5px solid #0088aa;
+  border-right: 1px solid #0088aa;
+  border-bottom: 1px solid #0088aa;
+}
+.dashboard__card.offerStatus-2 {
+  border-top: 5px solid #E8AB36;
+  border-left: 5px solid #E8AB36;
+  border-right: 1px solid #E8AB36;
+  border-bottom: 1px solid #E8AB36;
+}
+.dashboard__card.offerStatus-3 {
+  border-top: 5px solid #8BD472;
+  border-left: 5px solid #8BD472;
+  border-right: 1px solid #8BD472;
+  border-bottom: 1px solid #8BD472;
+}
+.dashboard__card.offerStatus-4 {
+  border-top: 5px solid #E6606C;
+  border-left: 5px solid #E6606C;
+  border-right: 1px solid #E6606C;
+  border-bottom: 1px solid #E6606C;
+}
+.dashboard__card.offerStatus-5 {
+  border-top: 5px solid #7a7975;
+  border-left: 5px solid #7a7975;
+  border-right: 1px solid #7a7975;
+  border-bottom: 1px solid #7a7975;
 }
 .dashboard__card h4 {
   font-weight: 600;
@@ -399,16 +465,61 @@ form p a:hover {
 .dashboard__card .more {
   border-radius: 10px;
   background: white;
-  color: #E8AB36;
-  border: 1px solid #E8AB36;
+  color: #7a7975;
+  border: 1px solid #7a7975;
   align-self: end;
   padding: 10px;
   font-weight: 400;
   text-align: center;
   font-size: 1.15rem;
 }
+.dashboard__card .more.offerStatus-1 {
+  border: 1px solid #0088aa;
+  color: #0088aa;
+}
+.dashboard__card .more.offerStatus-2 {
+  border: 1px solid #E8AB36;
+  color: #E8AB36;
+}
+.dashboard__card .more.offerStatus-3 {
+  border: 1px solid #8BD472;
+  color: #8BD472;
+}
+.dashboard__card .more.offerStatus-4 {
+  border: 1px solid #E6606C;
+  color: #E6606C;
+}
+.dashboard__card .more.offerStatus-5 {
+  border: 1px solid #7a7975;
+  color: #7a7975;
+}
 .dashboard__card .more:hover {
   background: #E8AB36;
+  color: white;
+  border: 1px solid white;
+}
+.dashboard__card .more:hover.offerStatus-1 {
+  background: #0088aa;
+  color: white;
+  border: 1px solid white;
+}
+.dashboard__card .more:hover.offerStatus-2 {
+  background: #E8AB36;
+  color: white;
+  border: 1px solid white;
+}
+.dashboard__card .more:hover.offerStatus-3 {
+  background: #8BD472;
+  color: white;
+  border: 1px solid white;
+}
+.dashboard__card .more:hover.offerStatus-4 {
+  background: #E6606C;
+  color: white;
+  border: 1px solid white;
+}
+.dashboard__card .more:hover.offerStatus-5 {
+  background: #7a7975;
   color: white;
   border: 1px solid white;
 }
@@ -559,6 +670,61 @@ form p a:hover {
 }
 .dashboard__back .dashboard-link:active {
   color: #007491;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  min-height: 100vh;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.profile__content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.profile span {
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+.profile__picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile__picture img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0088aa;
+}
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.profile__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .footer {

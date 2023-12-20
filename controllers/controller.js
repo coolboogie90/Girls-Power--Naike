@@ -1,7 +1,7 @@
 require("dotenv").config();
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
-const {ObjectId} = require('mongodb');
+const { ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
 
 let currentUserId;
@@ -63,14 +63,13 @@ module.exports.dashboardGet = async (req, res) => {
     const filterField =
         req.query.filter === "date" ? "updatedAt" : "offerStatus";
     const sortOrder = req.query.order === "dsc" ? -1 : 1;
-    
+
     const offers = await Offer.find({
         author: new ObjectId(currentUserId),
     }).sort({ [filterField]: sortOrder });
-    
+
     res.render("index", { offers });
 };
-
 
 // Login page
 module.exports.loginGet = (req, res) => {
@@ -106,12 +105,18 @@ module.exports.registerPost = async (req, res) => {
         resume,
         password,
     } = req.body;
-    
+
     try {
+        // if(req.files[0].filename == undefined){
+        //     profilePictureUrl = "";
+        // }else{
+        //     profilePictureUrl = req.files[0].filename;
+        // }
         // const result = await upload.single("profilePicture", req);
         // if (!result || !result.file) throw Error('No file uploaded');
-        
+
         // const profilePictureUrl = result.secure_url;
+        // console.log(profilePictureUrl);
 
         const user = await User.create({
             firstName,

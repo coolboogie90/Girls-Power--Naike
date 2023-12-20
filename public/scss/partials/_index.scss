@@ -17,7 +17,7 @@
         max-width: 300px;
         align-items: center;
         gap: 1rem;
-        padding: 1rem;
+        padding: 12px 10px;
         background: $cta-blue;
         color: white;
         border-radius: 10px;
@@ -91,12 +91,50 @@
         background: white;
         border-radius: 10px;
         padding: 1rem;
-        box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 1), 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
         max-height: 150px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: left;
+        border-top: 5px solid $status-archive-color;
+        border-left: 5px solid $status-archive-color;
+        border-right: 1px solid $status-archive-color;
+        border-bottom: 1px solid $status-archive-color;
+
+        &.offerStatus-1 {
+            border-top: 5px solid $status-interested-color;
+            border-left: 5px solid $status-interested-color;
+            border-right: 1px solid $status-interested-color;
+            border-bottom: 1px solid $status-interested-color;
+        }
+
+        &.offerStatus-2 {
+            border-top: 5px solid $status-sent-color;
+            border-left: 5px solid $status-sent-color;
+            border-right: 1px solid $status-sent-color;
+            border-bottom: 1px solid $status-sent-color;
+        }
+
+        &.offerStatus-3 {
+            border-top: 5px solid $status-interview-color;
+            border-left: 5px solid $status-interview-color;
+            border-right: 1px solid $status-interview-color;
+            border-bottom: 1px solid $status-interview-color;
+        }
+
+        &.offerStatus-4 {
+            border-top: 5px solid $status-negative-color;
+            border-left: 5px solid $status-negative-color;
+            border-right: 1px solid $status-negative-color;
+            border-bottom: 1px solid $status-negative-color;
+        }
+
+        &.offerStatus-5 {
+            border-top: 5px solid $status-archive-color;
+            border-left: 5px solid $status-archive-color;
+            border-right: 1px solid $status-archive-color;
+            border-bottom: 1px solid $status-archive-color;
+        }
 
         h4 {
             font-weight: 600;
@@ -111,19 +149,74 @@
         .more {
             border-radius: 10px;
             background: white;
-            color: $cta-orange;
-            border: 1px solid $cta-orange;
+            color: $status-archive-color;
+            border: 1px solid $status-archive-color;
             align-self: end;
             padding: 10px;
             font-weight: 400;
             text-align: center;
             font-size: 1.15rem;
+
+            &.offerStatus-1 {
+                border: 1px solid $status-interested-color;
+                color: $status-interested-color;
+            }
+
+            &.offerStatus-2 {
+                border: 1px solid $status-sent-color;
+                color: $status-sent-color;
+            }
+
+            &.offerStatus-3 {
+                border: 1px solid $status-interview-color;
+                color: $status-interview-color;
+            }
+
+            &.offerStatus-4 {
+                border: 1px solid $status-negative-color;
+                color: $status-negative-color;
+            }
+
+            &.offerStatus-5 {
+                border: 1px solid $status-archive-color;
+                color: $status-archive-color;
+            }
         }
 
         .more:hover {
             background: $cta-orange;
             color: white;
             border: 1px solid white;
+
+            &.offerStatus-1 {
+                background: $status-interested-color;
+                color: white;
+                border: 1px solid white;
+            }
+
+            &.offerStatus-2 {
+                background: $status-sent-color;
+                color: white;
+                border: 1px solid white;
+            }
+
+            &.offerStatus-3 {
+                background: $status-interview-color;
+                color: white;
+                border: 1px solid white;
+            }
+
+            &.offerStatus-4 {
+                background: $status-negative-color;
+                color: white;
+                border: 1px solid white;
+            }
+
+            &.offerStatus-5 {
+                background: $status-archive-color;
+                color: white;
+                border: 1px solid white;
+            }
         }
 
         .openDialog {

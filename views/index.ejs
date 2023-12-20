@@ -2,7 +2,7 @@
 
   <div class="container">
     <section class="dashboard">
-      <h1>DASHBOARD</h1>
+      <h1>Dashboard</h1>
       <div class="container btn-create">
         <a href="/create" class="dashboard__create"><i class='bx bx-briefcase'></i></i>Create a new job offer</a>
       </div>
@@ -91,7 +91,7 @@
                       <form class="btn-form archive" action="/archives/<%= offer._id %>" method="POST">
                         <button><i class='bx bx-archive'></i></button>
                       </form>
-                      <form class="btn-form delete" action="/delete/<%= offer._id %>" method="POST">
+                      <form class="btn-form delete" action="/delete/<%= offer._id %>" method="GET">
                         <button><i class='bx bx-trash'></i></button>
                       </form>
                     </div>
@@ -126,6 +126,8 @@
         let html = await response.text();
 
         document.querySelector('body').innerHTML = html;
+
+        addColorClasses();
       });
 
       /*-----Dialog-----*/
@@ -150,6 +152,28 @@
         });
       });
 
+      /*-----Status Color-----*/
+      const statusMapping = {
+        'Interested': 1,
+        'Resume sent': 2,
+        'Interview': 3,
+        'Negative': 4,
+        'Archive': 5
+      };
 
+      const addColorClasses = () => {
+        const cards = document.querySelectorAll('.dashboard__card');
+
+        cards.forEach(card => {
+          const offerStatus = card.querySelector('.offerStatus').textContent.trim();
+          const offerStatusNumber = statusMapping[offerStatus];
+          const moreButton = card.querySelector('.more');
+
+          card.classList.add(`offerStatus-${offerStatusNumber}`);
+          moreButton.classList.add(`offerStatus-${offerStatusNumber}`);
+        });
+      }
+
+      addColorClasses();
 
     </script>

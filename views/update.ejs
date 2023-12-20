@@ -1,12 +1,12 @@
 <%- include('partials/header'); -%>
 
     <div class="container">
-
+        <br>
         <div class="dashboard__back"><i class='bx bxs-chevrons-left'></i>
             <a href="/dashboard" class="dashboard-link">Back To The Dashboard</a>
         </div>
+        <br>
         <h1>Update</h1>
-
 
         <form method="post">
             <label>Job Title</label>
@@ -35,8 +35,8 @@
 
             <label for="offerOrigin">Origin</label>
             <select name="offerOrigin" id="offerOrigin" value="<%= offer.offerOrigin %>">
-                <option value="Candidature spontanée">Free Apply</option>
-                <option value="Job offer">Job offer</option>
+                <option value="Candidature spontanée">Spontaneous Application</option>
+                <option value="Job offer">Job Offer</option>
             </select>
             <div class="offerOrigin error"></div>
             <br>
@@ -44,7 +44,7 @@
             <label for="offerStatus">Status</label>
             <select name="offerStatus" id="offerStatus" value="<%= offer.offerStatus %>">
                 <option value="Interested">Interested</option>
-                <option value="CV sent">Resume sent</option>
+                <option value="Resume sent">Resume Sent</option>
                 <option value="Negative">Negative</option>
                 <option value="Interview">Interview</option>
                 <option value="Archive">Archive</option>

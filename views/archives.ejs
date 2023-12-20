@@ -68,7 +68,7 @@
                       <form class="btn-form archive" action="/archives/<%= offer._id %>" method="POST">
                         <button><i class='bx bx-archive'></i></button>
                       </form>
-                      <form class="btn-form delete" action="/delete/<%= offer._id %>" method="POST">
+                      <form class="btn-form delete" action="/delete/<%= offer._id %>" method="GET">
                         <button><i class='bx bx-trash'></i></button>
                       </form>
                     </div>
@@ -138,4 +138,28 @@
           setTimeout(() => openDialog.close(), 300);
         });
       });
+
+      /*-----Status Color-----*/
+      const statusMapping = {
+        'Interested': 1,
+        'Resume sent': 2,
+        'Interview': 3,
+        'Negative': 4,
+        'Archive': 5
+      };
+
+      const addColorClasses = () => {
+        const cards = document.querySelectorAll('.dashboard__card');
+
+        cards.forEach(card => {
+          const offerStatus = card.querySelector('.offerStatus').textContent.trim();
+          const offerStatusNumber = statusMapping[offerStatus];
+          const moreButton = card.querySelector('.more');
+
+          card.classList.add(`offerStatus-${offerStatusNumber}`);
+          moreButton.classList.add(`offerStatus-${offerStatusNumber}`);
+        });
+      }
+
+      addColorClasses();
     </script>
