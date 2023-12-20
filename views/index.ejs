@@ -10,18 +10,23 @@
         <a href="/archives" class="archives-link">Go To Archives</a>
       </div>
 
-      <form id="filter-form" action="/dashboard" method="GET">
-        <label for="filter">Filter by :</label>
-        <select name="filter" id="filter">
-          <option value="status">Status</option>
-          <option value="date">Date</option>
-        </select>
+      <form id="filter-form" action="/dashboard" method="GET" class="filter-form">
+        <div class="form-group">
+          <label for="filter">Filter by :</label>
+          <select name="filter" id="filter">
+              <option value="status">Status</option>
+              <option value="date">Date</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="order">Order :</label>
+          <select name="order" id="order">
+              <option value="asc">Asc.</option>
+              <option value="dsc">Desc.</option>
+          </select>
+        </div>
 
-        <label for="order">Order :</label>
-        <select name="order" id="order">
-          <option value="asc">Asc.</option>
-          <option value="dsc">Desc.</option>
-        </select>
         <button class="dashboard__filter"><i class='bx bx-sort-alt-2'></i></button>
       </form>
 
@@ -41,10 +46,10 @@
                 <p>
                   <%= offer.employerName %>
                 </p>
-                <a href="/offers/<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
+                <a href="/offers/<%= offer._id %>" id="link-<%= offer._id %>" class="more"><i class='bx bx-plus'></i></a>
 
-                <dialog id="openDialog">
-                  <button id="closeDialog">X</button>
+                <dialog id="dialog-<%= offer._id %>" class="openDialog">
+                  <button class="closeDialog">X</button>
                   <div class="dialog__content">
                     <div class="dashboard__offer">
                       <p class="dashboard__offer--title">
@@ -118,20 +123,26 @@
 
       /*-----Dialog-----*/
       const links = document.querySelectorAll('.more');
-      const dialog = document.querySelector('#openDialog');
-      const closeButton = document.querySelector('#closeDialog');
 
       links.forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
+          const dialogId = 'dialog-' + e.target.id.split('-')[1];
+          const dialog = document.querySelector('#' + dialogId);
           dialog.showModal();
           dialog.classList.add('open');
         });
       });
 
-      closeButton.addEventListener('click', () => {
-        dialog.classList.remove('open');
-        setTimeout(() => dialog.close(), 300);
+      const closeButtons = document.querySelectorAll('.closeDialog');
+      closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const openDialog = button.parentElement;
+          openDialog.classList.remove('open');
+          setTimeout(() => openDialog.close(), 300);
       });
+    });
+
+
 
     </script>

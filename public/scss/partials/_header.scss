@@ -5,7 +5,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 0;
-    outline: 1px solid red;
     
     h1, h2 {
         font-weight: 800;
@@ -15,7 +14,6 @@
     }
     
     &__logo {
-        outline: 1px solid red;
         padding: .625rem 0;
     }
 
@@ -24,7 +22,6 @@
     }
     
     &__nav {
-        outline: 1px solid red;        
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -55,7 +52,6 @@
 
     &__nav p {
         margin-right: 2rem;
-        outline: 1px solid red;
 
         @media (max-width: 768px) { 
             margin-right: 0;
