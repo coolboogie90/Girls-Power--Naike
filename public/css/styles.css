@@ -424,6 +424,21 @@ form p a:hover {
   border-right: 1px solid #7a7975;
   border-bottom: 1px solid #7a7975;
 }
+.dashboard__card .offerStatus-1 {
+  color: #0088aa;
+}
+.dashboard__card .offerStatus-2 {
+  color: #E8AB36;
+}
+.dashboard__card .offerStatus-3 {
+  color: #8BD472;
+}
+.dashboard__card .offerStatus-4 {
+  color: #E6606C;
+}
+.dashboard__card .offerStatus-5 {
+  color: #7a7975;
+}
 .dashboard__card.offerStatus-1 {
   border-top: 5px solid #0088aa;
   border-left: 5px solid #0088aa;
@@ -725,6 +740,20 @@ form p a:hover {
   gap: 1rem;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+.profile__buttons--btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #0088aa;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.profile__buttons--btn:hover {
+  background-color: #003644;
 }
 
 .footer {
