@@ -37,9 +37,9 @@
           <% offers.forEach((offer)=> { %>
             <% if(offer.offerStatus !=="Archive" ) { %>
               <div class="dashboard__card">
-                <p class="offerStatus">
+                <em class="offerStatus" style="font-size: small;">
                   <%= offer.offerStatus %>
-                </p>
+                </em>
                 <h4>
                   <%= offer.jobTitle %>
                 </h4>
@@ -165,15 +165,17 @@
         const cards = document.querySelectorAll('.dashboard__card');
 
         cards.forEach(card => {
-          const offerStatus = card.querySelector('.offerStatus').textContent.trim();
+          const offerStatusElement = card.querySelector('.offerStatus');
+          const offerStatus = offerStatusElement.textContent.trim();
           const offerStatusNumber = statusMapping[offerStatus];
           const moreButton = card.querySelector('.more');
 
           card.classList.add(`offerStatus-${offerStatusNumber}`);
           moreButton.classList.add(`offerStatus-${offerStatusNumber}`);
+          offerStatusElement.classList.add(`offerStatus-${offerStatusNumber}`); // Add color class to offerStatus paragraph
         });
       }
 
-      addColorClasses();
+      document.addEventListener('DOMContentLoaded', addColorClasses);
 
     </script>

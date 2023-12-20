@@ -101,6 +101,26 @@
         border-right: 1px solid $status-archive-color;
         border-bottom: 1px solid $status-archive-color;
 
+        .offerStatus-1 {
+            color: $status-interested-color;
+        }
+
+        .offerStatus-2 {
+            color: $status-sent-color;
+        }
+
+        .offerStatus-3 {
+            color: $status-interview-color;
+        }
+
+        .offerStatus-4 {
+            color: $status-negative-color;
+        }
+
+        .offerStatus-5 {
+            color: $status-archive-color;
+        }
+
         &.offerStatus-1 {
             border-top: 5px solid $status-interested-color;
             border-left: 5px solid $status-interested-color;
