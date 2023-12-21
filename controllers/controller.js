@@ -154,6 +154,15 @@ module.exports.createOfferPost = async (req, res) => {
         comments,
     } = req.body;
     try {
+        const token = req.cookies.jwt;
+
+        if (!token) {
+            return res.redirect("/login");
+        }
+
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decodedToken.id;
+
         const offer = await Offer.create({
             jobTitle,
             url,
@@ -164,7 +173,7 @@ module.exports.createOfferPost = async (req, res) => {
             offerOrigin,
             offerStatus,
             comments,
-            author: currentUserId,
+            author: userId,
         });
         res.status(201).redirect("/dashboard");
         console.log("Offer created");
