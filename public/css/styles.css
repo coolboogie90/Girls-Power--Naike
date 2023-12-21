@@ -128,7 +128,7 @@ form button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 form button:hover {
@@ -220,7 +220,8 @@ form p a:hover {
   align-items: center;
   padding: 1.5rem 0;
 }
-.header h1, .header h2 {
+.header h1,
+.header h2 {
   font-weight: 800;
   font-size: 1.5rem;
   line-height: 1.5;
@@ -269,33 +270,53 @@ form p a:hover {
     margin-bottom: 1rem;
   }
 }
-.header__nav a {
+.header__logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.header__logout--link a {
+  color: #E8AB36;
+  font-weight: 400;
+  border: 1px solid #E8AB36;
+  border-radius: 20px;
+  padding: 8px 20px;
+}
+@media (max-width: 768px) {
+  .header__logout--link a {
+    padding: 4px 10px;
+  }
+}
+.header__logout--link a:hover {
+  background: #E8AB36;
+  color: white;
+}
+.header__profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.header__profile--picture img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0088aa;
+}
+.header__profile--link a {
+  color: #183a55;
   font-weight: 600;
   text-transform: uppercase;
 }
 @media (max-width: 768px) {
-  .header__nav a {
+  .header__profile--link a {
     font-size: 0.875rem;
   }
 }
-.header__nav a:hover {
+.header__profile--link a:hover {
   color: #E8AB36;
-}
-.header__nav a:last-child {
-  color: #E8AB36;
-  font-weight: 400;
-  border: 1px solid #E8AB36;
-  border-radius: 10px;
-  padding: 8px 20px;
-}
-@media (max-width: 768px) {
-  .header__nav a:last-child {
-    padding: 4px 10px;
-  }
-}
-.header__nav a:last-child:hover {
-  background: #E8AB36;
-  color: white;
 }
 .header__burger {
   display: none;

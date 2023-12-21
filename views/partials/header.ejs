@@ -10,37 +10,48 @@
 </head>
 
 <body>
-<div class="container">
-    <header class="header">
-        
+    <div class="container">
+        <header class="header">
+
             <% if(user) { %>
                 <h1 class="header__logo"><a href="/dashboard"><span>job</span>Apply<span>.</span></a></h1>
                 <div class="header__nav">
-                    <p>Welcome,                        <%= user.firstName %>
-                        <%= user.lastName %>
+                    <p>Welcome, <%= user.firstName %>
+                            <%= user.lastName %>
                     </p>
-                    <a href="/profile"> My Profile</a>
-                    <a href="/logout">Log out</a>
+                    <div class="header__profile">
+                        <div class="header__profile--picture">
+                            <img src="<%= user.profilePicture %>" alt="profile picture">
+                        </div>
+                        <div class="header__profile--link">
+                            <a href="/profile"> My Profile</a>
+                        </div>
+                    </div>
+                    <div class="header__logout">
+                        <div class="header__logout--link">
+                            <a href="/logout">Log Out</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="header__burger">
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
-            <% } else { %>
-                <h1 class="header__logo"><a href="/"><span>job</span>Apply<span>.</span></a></h1>           
-            <% } %> 
-        </div>
-    </div>       
+                <% } else { %>
+                    <h1 class="header__logo"><a href="/"><span>job</span>Apply<span>.</span></a></h1>
+                    <% } %>
+    </div>
+    </div>
     </header>
 
-<script>
+    <script>
         /*-----Nav-----*/
-    const burger = document.querySelector('.header__burger');
-    const nav = document.querySelector('.header__nav');
+        const burger = document.querySelector('.header__burger');
+        const nav = document.querySelector('.header__nav');
 
-    burger.addEventListener('click', () => {
-        nav.classList.toggle('nav-active');
-        burger.classList.toggle('toggle');
-    });
-</script>
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+        });
+    </script>

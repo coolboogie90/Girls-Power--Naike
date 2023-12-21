@@ -1,30 +1,49 @@
 // const multer = require("multer");
-// const path = require("path");
 
-// // Multer config
-// module.exports = multer({
-//     storage: multer.diskStorage({}),
-//     fileFilter: (req, file, cb) => {
-//         let ext = path.extname(file.originalname);
-//         if (ext !== ".jpg" && ext !== ".jpeg" && ext !== ".png") {
-//             cb(new Error("File type is not supported"), false);
-//             return;
-//         }
-//         cb(null, true);
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "./uploads");
+//     },
+//     filename: function (req, file, cb) {
+//         const name = file.originalname.split(" ").join("");
+//         const extension = MIME_TYPES[file.mimetype];
+//         cb(null, name + Date.now() + "." + extension);
 //     },
 // });
 
+// const fileFilter = (req, file, cb) => {
+//     // reject a file
+//     if (
+//         file.mimetype.split("/") === "jpeg" ||
+//         file.mimetype.split("/") === "png" ||
+//         file.mimetype.split("/") === "jpg" ||
+//         file.mimetype.split("/") === "pdf"
+//     ) {
+//         cb(null, true);
+//     } else {
+//         cb(null, false);
+//     }
+// };
+
+// const upload = multer({
+//     storage: storage,
+//     fileFilter: fileFilter,
+// });
+
+// module.exports = upload;
+
 const multer = require("multer");
 
-const MIMETYPES = {
+const MIME_TYPES = {
     "image/jpg": "jpg",
     "image/jpeg": "jpg",
     "image/png": "png",
+    "image/pdf": "png",
 };
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "public/uploads/");
+        cb(null, "./uploads");
     },
     filename: function (req, file, cb) {
         const name = file.originalname.split(" ").join("");

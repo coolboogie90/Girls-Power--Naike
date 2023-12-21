@@ -5,14 +5,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 0;
-    
-    h1, h2 {
+
+    h1,
+    h2 {
         font-weight: 800;
         font-size: 1.5rem;
         line-height: 1.5;
         letter-spacing: 0.5px;
     }
-    
+
     &__logo {
         padding: .625rem 0;
     }
@@ -20,7 +21,7 @@
     &__logo span {
         color: $cta-blue;
     }
-    
+
     &__nav {
         display: flex;
         align-items: center;
@@ -47,47 +48,77 @@
             top: 0;
             right: 5%;
             box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
-        }   
+        }
     }
 
     &__nav p {
         margin-right: 2rem;
 
-        @media (max-width: 768px) { 
+        @media (max-width: 768px) {
             margin-right: 0;
             margin-bottom: 1rem;
         }
-
     }
 
-    &__nav a {
-        font-weight: 600;
-        text-transform: uppercase;
+    &__logout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
 
-        @media (max-width: 768px) { 
-            font-size: 0.875rem;
+        &--link {
+            a {
+                color: $cta-orange;
+                font-weight: 400;
+                border: 1px solid $cta-orange;
+                border-radius: 20px;
+                padding: 8px 20px;
+
+                @media (max-width: 768px) {
+                    // adjust this value according to your needs
+                    padding: 4px 10px;
+                }
+
+                &:hover {
+                    background: $cta-orange;
+                    color: white;
+                }
+            }
         }
     }
-    
-    &__nav a:hover {
-        color: $cta-orange;
-    }
 
-    &__nav a:last-child {
-        color: $cta-orange;
-        font-weight: 400;
-        border: 1px solid $cta-orange;
-        border-radius: 10px;
-        padding: 8px 20px;
+    &__profile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
 
-        @media (max-width: 768px) { // adjust this value according to your needs
-            padding: 4px 10px;
+        &--picture {
+
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid $cta-blue;
+            }
         }
-    }
 
-    &__nav a:last-child:hover {
-        background: $cta-orange;
-        color: white;
+        &--link {
+            a {
+                color: $main-blue;
+                font-weight: 600;
+                text-transform: uppercase;
+
+                @media (max-width: 768px) {
+                    font-size: 0.875rem;
+                }
+
+                &:hover {
+                    color: $cta-orange;
+                }
+            }
+        }
     }
 
     &__burger {
@@ -101,7 +132,7 @@
         cursor: pointer;
         padding: 0;
         z-index: 10;
-    
+
         div {
             width: 2rem;
             height: 0.25rem;
@@ -117,9 +148,11 @@
                 transform: rotate(-45deg) translate(-7px, 8px);
                 background: $main-blue;
             }
+
             &:nth-child(2) {
                 opacity: 0;
             }
+
             &:nth-child(3) {
                 transform: rotate(45deg) translate(-7px, -8px);
                 background: $main-blue;

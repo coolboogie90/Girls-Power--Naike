@@ -3,31 +3,10 @@ const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const { ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary").v2;
+const multer = require("multer");
 
 let currentUserId;
-
-//-------------Cloudinary config------------------
-/*const cloudinary = require("cloudinary").v2;
-const multer = require("multer");
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
-
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        allowedFormats: ["png", "jpg"],
-        folder: "users-profile-pictures",
-    },
-});
-
-const upload = multer({ storage: storage });
-*/
-//-------------------------------------------------
 
 // Handle errors
 const handleErrors = (err) => {
@@ -96,35 +75,43 @@ module.exports.registerGet = (req, res) => {
 };
 
 module.exports.registerPost = async (req, res) => {
-    const {
-        firstName,
-        lastName,
-        email,
-        profilePicture,
-        github,
-        resume,
-        password,
-    } = req.body;
+    const { firstName, lastName, email, github, password } = req.body;
+    // console.log(req.body);
+
+    // if (
+    //     !req.file ||
+    //     !req.files ||
+    //     !req.files[0] ||
+    //     !req.files[0].filename ||
+    //     !req.files[0].filename.length > 0
+    // ) {
+    //     console.log("No files uploaded");
+    //     return res.status(400).json({ error: "No files uploaded" });
+    // } else {
+    //     console.log("File uploaded");
+    // }
+
+    // const file = req.files[0].filename;
+    // console.log(file);
+
+    // console.log(req.body);
+
+    // let cloudinaryURL = "";
+    // await cloudinary.uploader
+    //     .upload(file)
+    //     .then((res) => {
+    //         console.log(res.secure_url);
+    //         cloudinaryURL = res.secure_url;
+    //     })
+    //     .catch((err) => console.log(err));
 
     try {
-        // if(req.files[0].filename == undefined){
-        //     profilePictureUrl = "";
-        // }else{
-        //     profilePictureUrl = req.files[0].filename;
-        // }
-        // const result = await upload.single("profilePicture", req);
-        // if (!result || !result.file) throw Error('No file uploaded');
-
-        // const profilePictureUrl = result.secure_url;
-        // console.log(profilePictureUrl);
-
         const user = await User.create({
             firstName,
             lastName,
             email,
             github,
-            profilePicture,
-            resume,
+            profilePicture: "images/default-profile.jpg",
             password,
         });
         const token = createToken(user._id);
