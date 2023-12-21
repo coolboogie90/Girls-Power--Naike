@@ -15,7 +15,9 @@ html {
 
 body {
     font-family: $barlow;
-    background: lighten($cta-orange, 30%);
+    background-image: url("../images/Colored\ Patterns.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     color: $main-blue;
 }
 
@@ -37,7 +39,7 @@ h3 {
     margin: 0 auto;
     max-width: 1110px;
     padding: 1.5rem;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5);
 }
 

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { requireAuth } = require("../middleware/authMiddleware");
 const controller = require("../controllers/controller");
+const upload = require("../middleware/multer");
 
 const router = Router();
 
@@ -14,7 +15,7 @@ router.post("/login", controller.loginPost);
 
 // Register
 router.get("/register", controller.registerGet);
-router.post("/register", controller.registerPost);
+router.post("/register", upload.any("profilePicture"), controller.registerPost);
 
 // Logout
 router.get("/logout", controller.logoutGet);
