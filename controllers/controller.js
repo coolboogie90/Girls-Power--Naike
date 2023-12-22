@@ -116,8 +116,7 @@ module.exports.registerPost = async (req, res) => {
     //     .catch((err) => console.log(err));
 
     try {
-        const profilePictureURL =
-            "https://res.cloudinary.com/dczeozags/image/upload/v1703207198/jobApplyTracker/p3iu5df8piukfp0gg6n9.png";
+        const profilePictureURL = process.env.DEFAULT_PROFILE_PICTURE;
 
         const user = await User.create({
             firstName,
