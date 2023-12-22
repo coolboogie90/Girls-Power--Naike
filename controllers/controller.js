@@ -2,9 +2,11 @@ require("dotenv").config();
 const User = require("../models/Users");
 const Offer = require("../models/Offers");
 const { ObjectId } = require("mongodb");
+const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
+const { checkUser } = require("../middleware/authMiddleware");
 
 let currentUserId;
 
@@ -43,11 +45,19 @@ module.exports.dashboardGet = async (req, res) => {
         req.query.filter === "date" ? "updatedAt" : "offerStatus";
     const sortOrder = req.query.order === "dsc" ? -1 : 1;
 
-    const offers = await Offer.find({
-        author: new ObjectId(currentUserId),
-    }).sort({ [filterField]: sortOrder });
+    const offers = res.locals.offers;
 
-    res.render("index", { offers });
+    const sortedOffers = offers.sort((a, b) => {
+        if (a[filterField] < b[filterField]) {
+            return sortOrder;
+        }
+        if (a[filterField] > b[filterField]) {
+            return -sortOrder;
+        }
+        return 0;
+    });
+
+    res.render("index", { offers: sortedOffers });
 };
 
 // Login page
@@ -106,18 +116,24 @@ module.exports.registerPost = async (req, res) => {
     //     .catch((err) => console.log(err));
 
     try {
+        const profilePictureURL =
+            "https://res.cloudinary.com/dczeozags/image/upload/v1703207198/jobApplyTracker/p3iu5df8piukfp0gg6n9.png";
+
         const user = await User.create({
             firstName,
             lastName,
             email,
             github,
-            profilePicture: "images/default-profile.jpg",
+            profilePicture: profilePictureURL,
             password,
         });
         const token = createToken(user._id);
         currentUserId = user._id;
         res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-        //res.status(201).json({ user: user._id });
+
+        req.cookies.jwt = token;
+        await checkUser(req, res, () => {});
+
         res.status(201).json({ user: user._id });
     } catch (err) {
         const errors = handleErrors(err);
@@ -161,7 +177,7 @@ module.exports.createOfferPost = async (req, res) => {
         }
 
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        const userId = decodedToken.id;
+        const userId = new mongoose.Types.ObjectId(decodedToken.id);
 
         const offer = await Offer.create({
             jobTitle,
